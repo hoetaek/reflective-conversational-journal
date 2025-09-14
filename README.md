@@ -1,1 +1,1 @@
-# reflect-with-ai
+# reflective-journal-companion
