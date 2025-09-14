@@ -178,7 +178,7 @@ def load_context_files() -> JournalContext:
     current_year, current_week,_ = current_date.isocalendar()
 
     # 사용자 정보
-    user_info = READ_FILE("**/about-me.instructions.md")
+    user_info = READ_FILE("**/about-me.md")
     
     # 저널 파일들
     today_journal = READ_FILE(f"journal/daily/{current_date}.md")
