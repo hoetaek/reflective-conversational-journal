@@ -2,8 +2,6 @@
 """
 Sync commands from .claude/commands/*.md to .gemini/commands/*.toml
 """
-import os
-import re
 from pathlib import Path
 
 
