@@ -1,7 +1,9 @@
 description = "성찰을 돕기 위한 개인 정보를 수집하여 about-me 파일을 생성합니다."
 
 prompt = """
-# /setup - 성찰 동반자 설정 명령어
+# /start-journal - 성찰 동반자 설정 명령어
+
+**설명**: 성찰을 돕기 위한 개인 정보를 수집하여 about-me 파일을 생성합니다.
 
 ## 기본 철학
 
@@ -24,6 +26,7 @@ prompt = """
 
 # setup 워크플로우 실행 명세
 
+```python
 from dataclasses import dataclass
 from typing import Dict, List, Any
 
@@ -98,13 +101,13 @@ def start_exploration_conversation():
     성찰 패턴 탐구를 위한 자연스러운 대화 시작
     \"\"\"
     opening_message = \"\"\"
-    궁금한 게 있어. 저널을 써보니까, 사람마다 하루를 돌아볼 때 
-    중요하게 생각하는 영역이 다르더라고. 어떤 사람은 일 중심이고, 
-    어떤 사람은 관계 중심이고... 
-    
+    궁금한 게 있어. 저널을 써보니까, 사람마다 하루를 돌아볼 때
+    중요하게 생각하는 영역이 다르더라고. 어떤 사람은 일 중심이고,
+    어떤 사람은 관계 중심이고...
+
     당신은 보통 하루를 돌아볼 때 어떤 것들이 가장 마음에 와닿아?
     \"\"\"
-    
+
     PRINT(opening_message)
     return COLLECT_USER_RESPONSE()
 
@@ -113,19 +116,19 @@ def explore_naturally(initial_response: str) -> ReflectionProfile:
     사용자 응답에 따라 자연스럽게 깊이 탐구
     \"\"\"
     profile_data = {}
-    
+
     # 초기 응답 분석
     initial_patterns = ANALYZE_REFLECTION_PATTERNS(initial_response)
-    
+
     # 자연스러운 호기심으로 더 깊이 탐구
     for area, config in EXPLORATION_AREAS.items():
         if SEEMS_RELEVANT_TO_USER(area, initial_patterns):
             area_insights = EXPLORE_AREA_NATURALLY(area, config)
             profile_data[area] = area_insights
-    
+
     # 추가로 궁금한 것들 자연스럽게 물어보기
     additional_context = ASK_FOLLOW_UP_QUESTIONS_NATURALLY(profile_data)
-    
+
     return ReflectionProfile(
         reflection_patterns=profile_data.get("성찰_패턴", ""),
         current_roles=profile_data.get("현재_상황", {}).get("roles", ""),
@@ -141,7 +144,7 @@ def create_about_me_file(profile: ReflectionProfile):
     수집된 정보로 about-me.md 파일 생성
     \"\"\"
     about_me_template = load_about_me_template()
-    
+
     # 슬롯 채우기
     about_me_content = about_me_template.replace("[REFLECTION_PATTERNS]", profile.reflection_patterns)
     about_me_content = about_me_content.replace("[CURRENT_ROLES]", profile.current_roles)
@@ -150,10 +153,10 @@ def create_about_me_file(profile: ReflectionProfile):
     about_me_content = about_me_content.replace("[RELATIONSHIPS_AND_ENVIRONMENT]", profile.relationships_and_environment)
     about_me_content = about_me_content.replace("[GROWTH_AND_CHANGES]", profile.growth_and_changes)
     about_me_content = about_me_content.replace("[ADDITIONAL_CONTEXT]", profile.additional_context)
-    
+
     # 파일 생성
     CREATE_FILE("about-me.md", about_me_content)
-    
+
     return "about-me.md"
 
 def review_and_adjust(file_path: str):
@@ -161,12 +164,12 @@ def review_and_adjust(file_path: str):
     생성된 파일을 사용자와 함께 검토하고 조정
     \"\"\"
     PRINT("about-me 파일을 만들어봤어. 한번 같이 보면서 조정할 부분이 있는지 확인해볼까?")
-    
+
     file_content = READ_FILE(file_path)
     SHOW_TO_USER(file_content)
-    
+
     adjustments_needed = ASK("수정하고 싶은 부분이나 추가하고 싶은 내용이 있어?")
-    
+
     if adjustments_needed:
         MAKE_ADJUSTMENTS_NATURALLY(file_path, adjustments_needed)
 
@@ -188,23 +191,24 @@ CORE_PRINCIPLES = {
 
 if __name__ == "__main__":
     \"\"\"setup 워크플로우를 순서대로 실행합니다.\"\"\"
-    
+
     # STEP 1: 자연스러운 대화 시작
     print("궁금한 게 있어")
     initial_response = start_exploration_conversation()
-    
+
     # STEP 2: 자연스러운 탐구 진행
     profile = explore_naturally(initial_response)
-    
+
     # STEP 3: about-me 파일 생성
     file_path = create_about_me_file(profile)
-    
+
     # STEP 4: 검토 및 조정
     review_and_adjust(file_path)
-    
+
     # 완료
     print("성찰을 위한 기본 설정이 완료되었어!")
     print(f"이제 {file_path} 파일이 있으니, 앞으로 저널링할 때 더 깊이 있는 대화를 할 수 있을 거야.")
-    
+
     return file_path
+```
 """

@@ -1,7 +1,9 @@
-description = "어제와 주간 맥락을 파악하여 오늘 저널링을 시작합니다."
+description = "어제와 주간 맥락을 파악하여 오늘 저널링을 시작합니다. (테스트 수정)"
 
 prompt = """
 # /journal - 성장 중심 저널링 명령어
+
+**설명**: 어제와 주간 맥락을 파악하여 오늘 저널링을 시작합니다. (테스트 수정)
 
 ## 저널링 목적과 기본 원칙
 
@@ -42,6 +44,7 @@ prompt = """
 
 # 저널링 워크플로우 실행 명세
 
+```python
 from dataclasses import dataclass
 from datetime import date, timedelta
 from typing import List, Dict, Any
@@ -71,19 +74,19 @@ TEMPLATE_SLOTS = {
     "DATE": "오늘 날짜",
     "ITEM_1_TITLE": "첫 번째 경험/활동 제목",
     "ITEM_1_WHAT": "무슨 일이 있었나?",
-    "ITEM_1_SO_WHAT": "어떤 의미/교훈인가?", 
+    "ITEM_1_SO_WHAT": "어떤 의미/교훈인가?",
     "ITEM_1_NOW_WHAT": "무엇을 할 것인가?",
     "ITEM_2_TITLE": "두 번째 경험/활동 제목",
     "ITEM_2_WHAT": "무슨 일이 있었나?",
     "ITEM_2_SO_WHAT": "어떤 의미/교훈인가?",
     "ITEM_2_NOW_WHAT": "무엇을 할 것인가?",
-    "ITEM_3_TITLE": "세 번째 경험/활동 제목", 
+    "ITEM_3_TITLE": "세 번째 경험/활동 제목",
     "ITEM_3_WHAT": "무슨 일이 있었나?",
     "ITEM_3_SO_WHAT": "어떤 의미/교훈인가?",
     "ITEM_3_NOW_WHAT": "무엇을 할 것인가?",
     "TODAY_MOOD": "전반적 상태 (기분/만족도)",
     "LONG_TERM_INSIGHT_1": "첫 번째 장기적 인사이트",
-    "LONG_TERM_INSIGHT_2": "두 번째 장기적 인사이트", 
+    "LONG_TERM_INSIGHT_2": "두 번째 장기적 인사이트",
     "LONG_TERM_INSIGHT_3": "세 번째 장기적 인사이트",
     "TODAY_GRATITUDE": "감사한 것들",
     "TOMORROW_GOAL_1": "내일 첫 번째 목표",
@@ -99,14 +102,14 @@ def create_journal_file():
     \"\"\"
     current_date = date.today()
     template = READ_FILE("templates/daily-note-template")
-    
+
     # DATE 슬롯을 현재 날짜로 채우기
     journal_content = template.replace("[DATE]", current_date.strftime("%Y-%m-%d"))
-    
+
     # journal/daily/ 경로에 파일 생성
     file_path = f"journal/daily/{current_date.strftime('%Y-%m-%d')}.md"
     CREATE_FILE(file_path, journal_content)
-    
+
     return file_path
 
 def process_natural_conversation():
@@ -115,32 +118,32 @@ def process_natural_conversation():
     \"\"\"
     # 사용자와 자연스러운 대화 시작
     conversation_data = {}
-    
+
     # 개별 항목들 수집 (유연한 개수)
     items = collect_daily_experiences()
-    
+
     for i, item in enumerate(items[:3], 1):  # 최대 3개 항목
         conversation_data[f"ITEM_{i}_TITLE"] = item["title"]
         conversation_data[f"ITEM_{i}_WHAT"] = item["what"]
-        conversation_data[f"ITEM_{i}_SO_WHAT"] = item["so_what"] 
+        conversation_data[f"ITEM_{i}_SO_WHAT"] = item["so_what"]
         conversation_data[f"ITEM_{i}_NOW_WHAT"] = item["now_what"]
-    
+
     # 전반적 상태
     conversation_data["TODAY_MOOD"] = collect_overall_mood()
-    
+
     # 장기적 인사이트
     insights = collect_long_term_insights()
     for i, insight in enumerate(insights[:3], 1):
         conversation_data[f"LONG_TERM_INSIGHT_{i}"] = insight
-    
+
     # 감사 일기
     conversation_data["TODAY_GRATITUDE"] = collect_gratitude()
-    
+
     # 내일 계획
     tomorrow_goals = collect_tomorrow_goals()
     for i, goal in enumerate(tomorrow_goals[:2], 1):
         conversation_data[f"TOMORROW_GOAL_{i}"] = goal
-    
+
     return conversation_data
 
 def collect_daily_experiences():
@@ -148,10 +151,10 @@ def collect_daily_experiences():
     하루의 주요 경험들을 What-So What-Now What 형태로 수집
     \"\"\"
     experiences = []
-    
+
     # 자연스러운 대화로 경험들을 하나씩 수집
     # 각 경험에 대해 What-So What-Now What 질문
-    
+
     return experiences
 
 def fill_journal_template(journal_file_path, conversation_data):
@@ -159,16 +162,16 @@ def fill_journal_template(journal_file_path, conversation_data):
     수집된 대화 내용을 저널 템플릿에 채워넣습니다.
     \"\"\"
     journal_content = READ_FILE(journal_file_path)
-    
+
     # 모든 슬롯을 대화 데이터로 채우기
     for slot, content in conversation_data.items():
         journal_content = journal_content.replace(f"[{slot}]", content)
-    
+
     # 파일 메타데이터 제거 (생성 완료 후)
     journal_content = remove_creation_metadata(journal_content)
-    
+
     WRITE_FILE(journal_file_path, journal_content)
-    
+
     return journal_content
 
 def load_context_files() -> JournalContext:
@@ -179,15 +182,15 @@ def load_context_files() -> JournalContext:
 
     # 사용자 정보
     user_info = READ_FILE("**/about-me.md")
-    
+
     # 저널 파일들
     today_journal = READ_FILE(f"journal/daily/{current_date}.md")
     yesterday_journal = READ_FILE(f"journal/daily/{yesterday_date}.md")
-    
+
     # 주간 목표 및 회고
     weekly_review = READ_FILE(f"**/*저널*/**/*{current_year}*회고*W{current_week}*.md")
     weekly_plan = READ_FILE(f"**/*저널*/**/*{current_year}*Week*{current_week}*.md")
-    
+
     return JournalContext(
         user_info=user_info,
         today_journal=today_journal,
@@ -201,19 +204,19 @@ def analyze_context(context_data: JournalContext) -> AnalysisSummary:
 
     # 오늘 저널 상태 분석
     today_status = PARSE_JOURNAL_STATUS(context_data.today_journal)
-    
+
     # 어제와의 연속성 파악
     continuity = ANALYZE_CONTINUITY(
-        context_data.yesterday_journal, 
+        context_data.yesterday_journal,
         context_data.today_journal
     )
-    
+
     # 주간 목표 연계
     weekly_alignment = CHECK_WEEKLY_GOALS(
         context_data.weekly_plan,
         today_status
     )
-    
+
     return AnalysisSummary(
         today_status=today_status,
         continuity_notes=continuity,
@@ -225,25 +228,26 @@ def analyze_context(context_data: JournalContext) -> AnalysisSummary:
 # SUPER IMPORTANT
 # YOU MUST EXECUTE THE FOLLOWING. THIS IS MANDATORY
 
-if **name** == "**main**":
+if __name__ == "__main__":
     \"\"\"전체 저널링 워크플로우를 순서대로 실행합니다.\"\"\"
 
     # STEP 1: 컨텍스트 분석
     context = load_context_files()
     analysis = analyze_context(context)
     print("The unexamined life is not worth living. - Socrates")
-    
+
     # STEP 2: 저널 파일 생성 (이미 있다면 로드)
     journal_file_path = create_journal_file()
-    
+
     # STEP 3: 자연스러운 대화를 통한 성찰 수집
     print("궁금한 게 있어")
     conversation_data = process_natural_conversation()
-    
+
     # STEP 4: 템플릿에 내용 채워넣기
     final_journal = fill_journal_template(journal_file_path, conversation_data)
 
     # 완료
     print("저널링이 완료되었습니다.")
     return final_journal
+```
 """
