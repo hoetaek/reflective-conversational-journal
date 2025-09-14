@@ -1,35 +1,20 @@
 # 나에 대한 이해 - 성찰을 위한 맥락
 
-## 🎯 나의 성찰 패턴
-> 하루를 돌아볼 때 주로 중요하게 생각하는 영역들
+## 🎯 하고 싶은 것
+> 요즘 가장 하고 싶은 것이나 이루고 싶은 것
 
-[REFLECTION_PATTERNS]
+[WHAT_I_WANT_TO_DO]
 
 ## 🏃‍♂️ 현재 상황
-> 지금 내 하루를 채우고 있는 주요한 것들
+> 지금 하루는 주로 어떻게 보내고 있는지
 
-### 주요 활동/역할
-[CURRENT_ROLES]
+[CURRENT_SITUATION]
 
-### 현재 관심사와 고민
-[CURRENT_CONCERNS]
+## 💭 문제 해결 방식
+> 어려운 일이나 고민이 생겼을 때 보통 어떻게 접근하는지
 
-## 💡 가치관과 동기
-> 결정을 내릴 때 중요하게 생각하는 기준들
+[PROBLEM_SOLVING_STYLE]
 
-[VALUES_AND_MOTIVATIONS]
+---
 
-## 🤝 관계와 환경
-> 나에게 영향을 주는 사람들과 환경
-
-[RELATIONSHIPS_AND_ENVIRONMENT]
-
-## 🌱 성장과 변화
-> 현재 변화하고 있는 것들과 학습하고 있는 것들
-
-[GROWTH_AND_CHANGES]
-
-## 📝 성찰 도움말
-> AI가 더 나은 질문을 하기 위해 알아두면 좋은 것들
-
-[ADDITIONAL_CONTEXT]
+*나머지는 대화하면서 자연스럽게 알아가요! 😊*
