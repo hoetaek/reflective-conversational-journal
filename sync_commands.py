@@ -72,6 +72,12 @@ def sync_commands():
         print("No .claude/commands directory found")
         return
 
+    # Clean up existing .toml files in gemini_dir
+    if gemini_dir.exists():
+        for toml_file in gemini_dir.glob('*.toml'):
+            toml_file.unlink()
+            print(f"Removed {toml_file.name}")
+
     # Process all .md files in claude_dir
     for md_file in claude_dir.glob('*.md'):
         # Create corresponding .toml filename
