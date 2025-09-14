@@ -93,10 +93,10 @@ TEMPLATE_SLOTS = {
 # --- 워크플로우 함수 (Workflow Functions) ---
 
 def create_journal_file():
-    """
+    \"\"\"
     템플릿에서 새로운 저널 파일을 생성합니다.
     journal/daily/ 경로에 날짜별 파일 생성
-    """
+    \"\"\"
     current_date = date.today()
     template = READ_FILE("templates/daily-note-template")
     
@@ -110,9 +110,9 @@ def create_journal_file():
     return file_path
 
 def process_natural_conversation():
-    """
+    \"\"\"
     자연스러운 대화를 통해 하루의 경험들을 수집하고 템플릿에 채워넣습니다.
-    """
+    \"\"\"
     # 사용자와 자연스러운 대화 시작
     conversation_data = {}
     
@@ -144,9 +144,9 @@ def process_natural_conversation():
     return conversation_data
 
 def collect_daily_experiences():
-    """
+    \"\"\"
     하루의 주요 경험들을 What-So What-Now What 형태로 수집
-    """
+    \"\"\"
     experiences = []
     
     # 자연스러운 대화로 경험들을 하나씩 수집
@@ -155,9 +155,9 @@ def collect_daily_experiences():
     return experiences
 
 def fill_journal_template(journal_file_path, conversation_data):
-    """
+    \"\"\"
     수집된 대화 내용을 저널 템플릿에 채워넣습니다.
-    """
+    \"\"\"
     journal_content = READ_FILE(journal_file_path)
     
     # 모든 슬롯을 대화 데이터로 채우기
@@ -172,7 +172,7 @@ def fill_journal_template(journal_file_path, conversation_data):
     return journal_content
 
 def load_context_files() -> JournalContext:
-    """필수 컨텍스트 파일을 로딩합니다."""
+    \"\"\"필수 컨텍스트 파일을 로딩합니다.\"\"\"
     current_date = date.today()
     yesterday_date = current_date - timedelta(days=1)
     current_year, current_week,_ = current_date.isocalendar()
@@ -197,7 +197,7 @@ def load_context_files() -> JournalContext:
     )
 
 def analyze_context(context_data: JournalContext) -> AnalysisSummary:
-    """컨텍스트를 분석하여 요약 정보를 반환합니다."""
+    \"\"\"컨텍스트를 분석하여 요약 정보를 반환합니다.\"\"\"
 
     # 오늘 저널 상태 분석
     today_status = PARSE_JOURNAL_STATUS(context_data.today_journal)
@@ -226,12 +226,12 @@ def analyze_context(context_data: JournalContext) -> AnalysisSummary:
 # YOU MUST EXECUTE THE FOLLOWING. THIS IS MANDATORY
 
 if **name** == "**main**":
-    """전체 저널링 워크플로우를 순서대로 실행합니다."""
+    \"\"\"전체 저널링 워크플로우를 순서대로 실행합니다.\"\"\"
 
     # STEP 1: 컨텍스트 분석
     context = load_context_files()
     analysis = analyze_context(context)
-    print("어렵더라도 내 삶을 포기하지 않고 노력할거야") 
+    print("The unexamined life is not worth living. - Socrates")
     
     # STEP 2: 저널 파일 생성 (이미 있다면 로드)
     journal_file_path = create_journal_file()

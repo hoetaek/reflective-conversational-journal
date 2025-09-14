@@ -86,32 +86,32 @@ EXPLORATION_AREAS = {
 # --- about-me 템플릿 로드 ---
 
 def load_about_me_template():
-    """
+    \"\"\"
     templates/about-me-template 파일을 로드합니다.
-    """
+    \"\"\"
     return READ_FILE("templates/about-me-template.md")
 
 # --- 워크플로우 함수 (Workflow Functions) ---
 
 def start_exploration_conversation():
-    """
+    \"\"\"
     성찰 패턴 탐구를 위한 자연스러운 대화 시작
-    """
-    opening_message = """
+    \"\"\"
+    opening_message = \"\"\"
     궁금한 게 있어. 저널을 써보니까, 사람마다 하루를 돌아볼 때 
     중요하게 생각하는 영역이 다르더라고. 어떤 사람은 일 중심이고, 
     어떤 사람은 관계 중심이고... 
     
     당신은 보통 하루를 돌아볼 때 어떤 것들이 가장 마음에 와닿아?
-    """
+    \"\"\"
     
     PRINT(opening_message)
     return COLLECT_USER_RESPONSE()
 
 def explore_naturally(initial_response: str) -> ReflectionProfile:
-    """
+    \"\"\"
     사용자 응답에 따라 자연스럽게 깊이 탐구
-    """
+    \"\"\"
     profile_data = {}
     
     # 초기 응답 분석
@@ -137,9 +137,9 @@ def explore_naturally(initial_response: str) -> ReflectionProfile:
     )
 
 def create_about_me_file(profile: ReflectionProfile):
-    """
+    \"\"\"
     수집된 정보로 about-me.md 파일 생성
-    """
+    \"\"\"
     about_me_template = load_about_me_template()
     
     # 슬롯 채우기
@@ -157,9 +157,9 @@ def create_about_me_file(profile: ReflectionProfile):
     return "about-me.md"
 
 def review_and_adjust(file_path: str):
-    """
+    \"\"\"
     생성된 파일을 사용자와 함께 검토하고 조정
-    """
+    \"\"\"
     PRINT("about-me 파일을 만들어봤어. 한번 같이 보면서 조정할 부분이 있는지 확인해볼까?")
     
     file_content = READ_FILE(file_path)
@@ -187,10 +187,10 @@ CORE_PRINCIPLES = {
 # YOU MUST EXECUTE THE FOLLOWING. THIS IS MANDATORY
 
 if __name__ == "__main__":
-    """setup 워크플로우를 순서대로 실행합니다."""
+    \"\"\"setup 워크플로우를 순서대로 실행합니다.\"\"\"
     
     # STEP 1: 자연스러운 대화 시작
-    print("궁금한 게 있어...")
+    print("궁금한 게 있어")
     initial_response = start_exploration_conversation()
     
     # STEP 2: 자연스러운 탐구 진행

@@ -42,9 +42,9 @@ class WeeklyInsights:
 # --- 주간 정보 계산 (Week Information Calculation) ---
 
 def calculate_week_info():
-    """
+    \"\"\"
     현재 날짜 기준으로 지난 주간의 정보를 계산합니다.
-    """
+    \"\"\"
     today = datetime.now()
     # 지난 주 월요일부터 일요일까지 계산
     days_since_monday = today.weekday()  # 월요일 = 0
@@ -66,9 +66,9 @@ def calculate_week_info():
 # --- 저널 파일 수집 (Journal File Collection) ---
 
 def find_weekly_journal_files():
-    """
+    \"\"\"
     지난 일주일간의 daily journal 파일들을 찾습니다.
-    """
+    \"\"\"
     week_info = calculate_week_info()
     journal_files = []
     
@@ -99,9 +99,9 @@ def find_weekly_journal_files():
 # --- 저널 분석 (Journal Analysis) ---
 
 def analyze_weekly_patterns(journal_files: List[Dict]) -> WeeklyInsights:
-    """
+    \"\"\"
     수집된 저널 파일들을 분석하여 주간 인사이트를 도출합니다.
-    """
+    \"\"\"
     if not journal_files:
         return WeeklyInsights(
             week_title="",
@@ -121,7 +121,7 @@ def analyze_weekly_patterns(journal_files: List[Dict]) -> WeeklyInsights:
         all_content += file_data['content']
     
     # AI 분석 요청
-    analysis_prompt = f"""
+    analysis_prompt = f\"\"\"
     다음은 지난 일주일간의 daily journal 내용들입니다:
     
     {all_content}
@@ -137,24 +137,24 @@ def analyze_weekly_patterns(journal_files: List[Dict]) -> WeeklyInsights:
     7. 다음 주를 위한 인사이트 (패턴 분석 결과와 개선 방향)
     
     각 항목을 numbered list 형식으로 작성해주세요.
-    """
+    \"\"\"
     
     return ANALYZE_CONTENT(analysis_prompt)
 
 # --- weekly-note-template 로드 ---
 
 def load_weekly_template():
-    """
+    \"\"\"
     templates/weekly-note-template.md 파일을 로드합니다.
-    """
+    \"\"\"
     return READ_FILE("templates/weekly-note-template.md")
 
 # --- 주간 회고 파일 생성 (Weekly Review File Creation) ---
 
 def create_weekly_review_file(insights: WeeklyInsights, week_info: Dict):
-    """
+    \"\"\"
     분석 결과를 바탕으로 주간 회고 파일을 생성합니다.
-    """
+    \"\"\"
     template = load_weekly_template()
     
     # 플레이스홀더 치환
@@ -181,9 +181,9 @@ def create_weekly_review_file(insights: WeeklyInsights, week_info: Dict):
     return file_path
 
 def collaborate_on_review(file_path: str):
-    """
+    \"\"\"
     생성된 주간 회고를 사용자와 함께 검토하고 개선합니다.
-    """
+    \"\"\"
     PRINT("주간 회고 초안을 만들어봤어. 같이 보면서 수정하거나 추가할 부분이 있는지 확인해볼까?")
     
     file_content = READ_FILE(file_path)
@@ -201,9 +201,9 @@ def collaborate_on_review(file_path: str):
 # --- about-me 파일 로드 (Context Loading) ---
 
 def load_about_me_context():
-    """
+    \"\"\"
     about-me.md 파일이 있으면 로드하여 맥락 정보로 활용합니다.
-    """
+    \"\"\"
     if FILE_EXISTS("about-me.md"):
         return READ_FILE("about-me.md")
     else:
@@ -215,7 +215,7 @@ def load_about_me_context():
 # YOU MUST EXECUTE THE FOLLOWING. THIS IS MANDATORY
 
 if __name__ == "__main__":
-    """weekly 워크플로우를 순서대로 실행합니다."""
+    \"\"\"weekly 워크플로우를 순서대로 실행합니다.\"\"\"
     
     # STEP 1: about-me 맥락 로드
     about_me_context = load_about_me_context()
