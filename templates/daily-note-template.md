@@ -4,10 +4,14 @@
 > 오늘의 주요 경험이나 활동들을 개별적으로 성찰해보세요.
 > 실제로 의미 있게 이야기할 항목들만 포함됩니다. (1~3개 정도)
 
-[DYNAMIC_ITEMS]
+## [ITEM_1_TITLE]
+- What: [ITEM_1_WHAT]
+- So What: [ITEM_1_SO_WHAT]
+- Now What: [ITEM_1_NOW_WHAT]
 
-#### 전반적 상태 (기분/만족도)
-- [TODAY_MOOD]
+[ADDITIONAL_ITEMS]
+
+[FREE_NOTES]
 
 #### 💡 장기적 인사이트
 > 오늘 하루의 경험들을 종합해서 얻은 더 큰 깨달음이나 패턴 (최대 3가지)

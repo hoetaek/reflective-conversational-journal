@@ -73,15 +73,8 @@ TEMPLATE_SLOTS = {
     "ITEM_1_WHAT": "무슨 일이 있었나?",
     "ITEM_1_SO_WHAT": "어떤 의미/교훈인가?",
     "ITEM_1_NOW_WHAT": "무엇을 할 것인가?",
-    "ITEM_2_TITLE": "두 번째 경험/활동 제목",
-    "ITEM_2_WHAT": "무슨 일이 있었나?",
-    "ITEM_2_SO_WHAT": "어떤 의미/교훈인가?",
-    "ITEM_2_NOW_WHAT": "무엇을 할 것인가?",
-    "ITEM_3_TITLE": "세 번째 경험/활동 제목",
-    "ITEM_3_WHAT": "무슨 일이 있었나?",
-    "ITEM_3_SO_WHAT": "어떤 의미/교훈인가?",
-    "ITEM_3_NOW_WHAT": "무엇을 할 것인가?",
-    "TODAY_MOOD": "전반적 상태 (기분/만족도)",
+    "ADDITIONAL_ITEMS": "추가 경험/활동들 (동적 생성)",
+    "FREE_NOTES": "자유 노트 (성찰 외 기록)",
     "LONG_TERM_INSIGHT_1": "첫 번째 장기적 인사이트",
     "LONG_TERM_INSIGHT_2": "두 번째 장기적 인사이트",
     "LONG_TERM_INSIGHT_3": "세 번째 장기적 인사이트",
@@ -123,11 +116,29 @@ def process_natural_conversation():
     # 개별 항목들 수집 (사용자가 실제로 이야기한 만큼만)
     items = collect_daily_experiences()
 
-    # 실제 수집된 항목 수만큼 동적 템플릿 생성
-    conversation_data["DYNAMIC_ITEMS"] = generate_dynamic_items_section(items)
+    # 첫 번째 항목은 기본 슬롯에, 추가 항목들은 동적으로 생성
+    if len(items) > 0:
+        conversation_data["ITEM_1_TITLE"] = items[0]["title"]
+        conversation_data["ITEM_1_WHAT"] = items[0]["what"]
+        conversation_data["ITEM_1_SO_WHAT"] = items[0]["so_what"]
+        conversation_data["ITEM_1_NOW_WHAT"] = items[0]["now_what"]
 
-    # 전반적 상태
-    conversation_data["TODAY_MOOD"] = collect_overall_mood()
+        # 추가 항목들 (2번째 항목부터)
+        conversation_data["ADDITIONAL_ITEMS"] = generate_additional_items_section(items[1:])
+    else:
+        # 항목이 하나도 없는 경우 (거의 없겠지만)
+        conversation_data["ITEM_1_TITLE"] = ""
+        conversation_data["ITEM_1_WHAT"] = ""
+        conversation_data["ITEM_1_SO_WHAT"] = ""
+        conversation_data["ITEM_1_NOW_WHAT"] = ""
+        conversation_data["ADDITIONAL_ITEMS"] = ""
+
+    # 자유 노트 (성찰 외 기록하고 싶은 것들)
+    free_notes = collect_free_notes()
+    if free_notes and free_notes.strip():
+        conversation_data["FREE_NOTES"] = generate_free_notes_section(free_notes)
+    else:
+        conversation_data["FREE_NOTES"] = ""  # 빈 내용이면 섹션 제거
 
     # 장기적 인사이트 (실제로 있는 것만)
     insights = collect_long_term_insights()
@@ -145,13 +156,17 @@ def process_natural_conversation():
 
     return conversation_data
 
-def generate_dynamic_items_section(items):
+def generate_additional_items_section(additional_items):
     """
-    실제 수집된 항목들로 동적으로 섹션을 생성합니다.
+    첫 번째 항목 이후의 추가 항목들로 동적으로 섹션을 생성합니다.
     """
+    if not additional_items:
+        return ""
+
     dynamic_content = ""
-    for item in items:
+    for item in additional_items:
         dynamic_content += f"""
+
 ## {item["title"]}
 - What: {item["what"]}
 - So What: {item["so_what"]}
@@ -200,6 +215,33 @@ def collect_daily_experiences():
     # 5. 최대 3개까지만 진행
 
     return experiences
+
+def collect_free_notes():
+    """
+    성찰이 아닌 기타 기록하고 싶은 내용들을 수집합니다.
+
+    APPROACH:
+    - "오늘 다른 기록하고 싶은 것들이 있나요?" 정도로 자연스럽게 물어보세요
+    - 일정, 메모, 간단한 하루 요약, 특별한 일들 등
+    - 성찰보다는 정리, 요약 중심으로 접근
+    - 없으면 억지로 만들지 마세요
+    """
+    # 자유로운 형태의 노트 수집
+    # 예: "오늘 미팅 3개, 저녁에 친구와 통화, 새로운 책 주문"
+    # 또는: "날씨가 좋아서 산책, 카페에서 작업"
+
+    return ""
+
+def generate_free_notes_section(notes_content):
+    """
+    자유 노트 내용이 있을 때만 섹션을 생성합니다.
+    """
+    return f"""#### 📝 자유 노트
+> 성찰 외에 기록하고 싶은 것들 (일정, 메모, 간단한 요약 등)
+
+{notes_content}
+
+"""
 
 def fill_journal_template(journal_file_path, conversation_data):
     """
