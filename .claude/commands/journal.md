@@ -68,7 +68,6 @@ class AnalysisSummary:
 
 # 새로운 템플릿 슬롯 매핑
 TEMPLATE_SLOTS = {
-    "DATE": "오늘 날짜",
     "ITEM_1_TITLE": "첫 번째 경험/활동 제목",
     "ITEM_1_WHAT": "무슨 일이 있었나?",
     "ITEM_1_SO_WHAT": "어떤 의미/교훈인가?",
@@ -92,10 +91,8 @@ def create_journal_file():
     current_date = date.today()
     template = READ_FILE("templates/daily-note-template")
 
-    # DATE 슬롯을 현재 날짜로 채우기
-    journal_content = template.replace("[DATE]", current_date.strftime("%Y-%m-%d"))
-
     # DYNAMIC_ITEMS는 나중에 동적으로 채워질 예정이므로 일단 빈 상태로 유지
+    journal_content = template
 
     # journal/daily/ 경로에 파일 생성
     file_path = f"journal/daily/{current_date.strftime('%Y-%m-%d')}.md"
