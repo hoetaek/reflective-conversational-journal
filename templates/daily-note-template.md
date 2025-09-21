@@ -1,22 +1,10 @@
 ## 🌅 오늘 하루 돌아보기
 
 #### 개별 항목 성찰
-> 오늘의 주요 경험이나 활동들을 개별적으로 성찰해보세요. 항목 수는 자유롭게 조절 가능합니다.
+> 오늘의 주요 경험이나 활동들을 개별적으로 성찰해보세요.
+> 실제로 의미 있게 이야기할 항목들만 포함됩니다. (1~3개 정도)
 
-## [ITEM_1_TITLE]
-- What: [ITEM_1_WHAT]
-- So What: [ITEM_1_SO_WHAT] 
-- Now What: [ITEM_1_NOW_WHAT]
-
-## [ITEM_2_TITLE]
-- What: [ITEM_2_WHAT]
-- So What: [ITEM_2_SO_WHAT]
-- Now What: [ITEM_2_NOW_WHAT]
-
-## [ITEM_3_TITLE]
-- What: [ITEM_3_WHAT]
-- So What: [ITEM_3_SO_WHAT]
-- Now What: [ITEM_3_NOW_WHAT]
+[DYNAMIC_ITEMS]
 
 #### 전반적 상태 (기분/만족도)
 - [TODAY_MOOD]
@@ -27,9 +15,6 @@
 1. [LONG_TERM_INSIGHT_1]
 2. [LONG_TERM_INSIGHT_2]
 3. [LONG_TERM_INSIGHT_3]
-
-#### 🙏 감사 일기
-- [TODAY_GRATITUDE]
 
 ---
 

@@ -85,7 +85,6 @@ TEMPLATE_SLOTS = {
     "LONG_TERM_INSIGHT_1": "첫 번째 장기적 인사이트",
     "LONG_TERM_INSIGHT_2": "두 번째 장기적 인사이트",
     "LONG_TERM_INSIGHT_3": "세 번째 장기적 인사이트",
-    "TODAY_GRATITUDE": "감사한 것들",
     "TOMORROW_GOAL_1": "내일 첫 번째 목표",
     "TOMORROW_GOAL_2": "내일 두 번째 목표"
 }
@@ -103,6 +102,8 @@ def create_journal_file():
     # DATE 슬롯을 현재 날짜로 채우기
     journal_content = template.replace("[DATE]", current_date.strftime("%Y-%m-%d"))
 
+    # DYNAMIC_ITEMS는 나중에 동적으로 채워질 예정이므로 일단 빈 상태로 유지
+
     # journal/daily/ 경로에 파일 생성
     file_path = f"journal/daily/{current_date.strftime('%Y-%m-%d')}.md"
     CREATE_FILE(file_path, journal_content)
@@ -112,45 +113,91 @@ def create_journal_file():
 def process_natural_conversation():
     """
     자연스러운 대화를 통해 하루의 경험들을 수집하고 템플릿에 채워넣습니다.
+
+    IMPORTANT: 사용자가 실제로 이야기한 항목 수만큼만 수집하세요.
+    억지로 3개를 채우려고 하지 마세요.
     """
     # 사용자와 자연스러운 대화 시작
     conversation_data = {}
 
-    # 개별 항목들 수집 (유연한 개수)
+    # 개별 항목들 수집 (사용자가 실제로 이야기한 만큼만)
     items = collect_daily_experiences()
 
-    for i, item in enumerate(items[:3], 1):  # 최대 3개 항목
-        conversation_data[f"ITEM_{i}_TITLE"] = item["title"]
-        conversation_data[f"ITEM_{i}_WHAT"] = item["what"]
-        conversation_data[f"ITEM_{i}_SO_WHAT"] = item["so_what"]
-        conversation_data[f"ITEM_{i}_NOW_WHAT"] = item["now_what"]
+    # 실제 수집된 항목 수만큼 동적 템플릿 생성
+    conversation_data["DYNAMIC_ITEMS"] = generate_dynamic_items_section(items)
 
     # 전반적 상태
     conversation_data["TODAY_MOOD"] = collect_overall_mood()
 
-    # 장기적 인사이트
+    # 장기적 인사이트 (실제로 있는 것만)
     insights = collect_long_term_insights()
-    for i, insight in enumerate(insights[:3], 1):
-        conversation_data[f"LONG_TERM_INSIGHT_{i}"] = insight
+    insights_text = generate_insights_section(insights)
+    conversation_data["LONG_TERM_INSIGHT_1"] = insights_text.get("insight_1", "")
+    conversation_data["LONG_TERM_INSIGHT_2"] = insights_text.get("insight_2", "")
+    conversation_data["LONG_TERM_INSIGHT_3"] = insights_text.get("insight_3", "")
 
-    # 감사 일기
-    conversation_data["TODAY_GRATITUDE"] = collect_gratitude()
 
-    # 내일 계획
+    # 내일 계획 (실제로 있는 것만)
     tomorrow_goals = collect_tomorrow_goals()
-    for i, goal in enumerate(tomorrow_goals[:2], 1):
-        conversation_data[f"TOMORROW_GOAL_{i}"] = goal
+    goals_text = generate_goals_section(tomorrow_goals)
+    conversation_data["TOMORROW_GOAL_1"] = goals_text.get("goal_1", "")
+    conversation_data["TOMORROW_GOAL_2"] = goals_text.get("goal_2", "")
 
     return conversation_data
+
+def generate_dynamic_items_section(items):
+    """
+    실제 수집된 항목들로 동적으로 섹션을 생성합니다.
+    """
+    dynamic_content = ""
+    for item in items:
+        dynamic_content += f"""
+## {item["title"]}
+- What: {item["what"]}
+- So What: {item["so_what"]}
+- Now What: {item["now_what"]}
+"""
+    return dynamic_content.strip()
+
+def generate_insights_section(insights):
+    """
+    실제 인사이트 개수에 맞춰 섹션을 생성합니다.
+    """
+    result = {}
+    for i, insight in enumerate(insights[:3], 1):
+        result[f"insight_{i}"] = insight
+    return result
+
+def generate_goals_section(goals):
+    """
+    실제 목표 개수에 맞춰 섹션을 생성합니다.
+    """
+    result = {}
+    for i, goal in enumerate(goals[:2], 1):
+        result[f"goal_{i}"] = goal
+    return result
 
 def collect_daily_experiences():
     """
     하루의 주요 경험들을 What-So What-Now What 형태로 수집
+
+    APPROACH: 대화하면서 하나의 경험에 대해 What-So What-Now What이
+    충분히 채워질 정도로 이야기가 나오면, 그때 하나의 항목을 완성하고
+    다음 경험으로 넘어가는 방식으로 진행하세요.
+
+    IMPORTANT:
+    - 억지로 여러 개를 만들어내려고 하지 마세요
+    - 한 항목이 완성되면 "또 다른 의미 있는 일이 있었나요?" 정도로 자연스럽게 물어보세요
+    - 사용자가 "특별한 일이 더 없었어요" 같은 신호를 보내면 중단하세요
     """
     experiences = []
 
-    # 자연스러운 대화로 경험들을 하나씩 수집
-    # 각 경험에 대해 What-So What-Now What 질문
+    # 실시간 항목 생성 방식:
+    # 1. 첫 번째 경험에 대해 자연스럽게 대화 시작
+    # 2. What-So What-Now What가 충분히 나오면 첫 번째 항목 완성
+    # 3. "또 다른 의미 있는 경험이 있었나요?" 물어보기
+    # 4. 있으면 두 번째 항목 진행, 없으면 종료
+    # 5. 최대 3개까지만 진행
 
     return experiences
 
