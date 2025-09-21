@@ -155,11 +155,11 @@ def generate_user_profile(conversation_data: ConversationData) -> UserProfile:
 
     return profile
 
-def create_about_me_file(profile: UserProfile) -> str:
+def create_profile_file(profile: UserProfile) -> str:
     """
-    사용자 프로필을 바탕으로 about-me.md 파일을 생성합니다.
+    사용자 프로필을 바탕으로 profile.md 파일을 생성합니다.
     """
-    about_me_template = """# 나에 대해
+    profile_template = """# 나에 대해
 
 ## 🎯 현재 관심사
 {current_interests}
@@ -184,10 +184,10 @@ def create_about_me_file(profile: UserProfile) -> str:
 *언제든지 수정하거나 업데이트할 수 있어요.*
 """
 
-    content = format_profile_content(profile, about_me_template)
+    content = format_profile_content(profile, profile_template)
 
-    # about-me.md 파일 생성
-    file_path = "about-me.md"
+    # profile.md 파일 생성
+    file_path = "profile.md"
     CREATE_FILE(file_path, content)
 
     return file_path
@@ -197,7 +197,7 @@ def review_and_refine_profile(file_path: str):
     생성된 프로필을 사용자와 함께 검토하고 개선합니다.
     """
     print("정말 좋은 이야기들을 들려주셨네요!")
-    print("이런 내용들을 정리해서 앞으로 저널링할 때 도움이 되도록 about-me.md 파일을 만들어드렸어요.")
+    print("이런 내용들을 정리해서 앞으로 저널링할 때 도움이 되도록 profile.md 파일을 만들어드렸어요.")
 
     # 파일 내용 보여주기
     content = READ_FILE(file_path)
@@ -233,8 +233,8 @@ if __name__ == "__main__":
     # STEP 3: 사용자 프로필 생성
     user_profile = generate_user_profile(conversation_data)
 
-    # STEP 4: about-me.md 파일 생성
-    profile_file = create_about_me_file(user_profile)
+    # STEP 4: profile.md 파일 생성
+    profile_file = create_profile_file(user_profile)
 
     # STEP 5: 프로필 검토 및 개선
     review_and_refine_profile(profile_file)

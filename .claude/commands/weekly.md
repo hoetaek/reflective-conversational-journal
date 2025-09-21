@@ -198,16 +198,16 @@ def collaborate_on_review(file_path: str):
     else:
         PRINT("좋아! 이번 주간 회고가 완성되었어.")
 
-# --- about-me 파일 로드 (Context Loading) ---
+# --- profile 파일 로드 (Context Loading) ---
 
-def load_about_me_context():
+def load_profile_context():
     """
-    about-me.md 파일이 있으면 로드하여 맥락 정보로 활용합니다.
+    profile.md 파일이 있으면 로드하여 맥락 정보로 활용합니다.
     """
-    if FILE_EXISTS("about-me.md"):
-        return READ_FILE("about-me.md")
+    if FILE_EXISTS("profile.md"):
+        return READ_FILE("profile.md")
     else:
-        return "about-me 파일이 없습니다. 더 개인화된 회고를 위해 /setup 명령어로 about-me 파일을 먼저 생성하는 것을 추천합니다."
+        return "profile 파일이 없습니다. 더 개인화된 회고를 위해 /start-journal 명령어로 profile 파일을 먼저 생성하는 것을 추천합니다."
 
 # --- 메인 워크플로우 실행 (Main Workflow Execution) ---
 
@@ -217,9 +217,9 @@ def load_about_me_context():
 if __name__ == "__main__":
     """weekly 워크플로우를 순서대로 실행합니다."""
 
-    # STEP 1: about-me 맥락 로드
-    about_me_context = load_about_me_context()
-    print(f"맥락 정보: {about_me_context[:100]}..." if len(about_me_context) > 100 else about_me_context)
+    # STEP 1: profile 맥락 로드
+    profile_context = load_profile_context()
+    print(f"맥락 정보: {profile_context[:100]}..." if len(profile_context) > 100 else profile_context)
 
     # STEP 2: 지난 주간 저널 파일들 수집
     print("지난 일주일간의 저널 파일들을 찾고 있어...")
