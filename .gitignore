@@ -26,3 +26,7 @@ venv.bak/
 # Temporary files
 *.tmp
 *.temp
+
+# Obsidian - exclude only personal/temporary settings
+.obsidian/workspace*
+.obsidian/plugins/*/data.json
