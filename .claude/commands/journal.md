@@ -54,6 +54,7 @@ class JournalContext:
     user_info: str
     today_journal: str
     yesterday_journal: str
+    recent_journals: List[str]  # 최근 5일간의 저널 (2-5일 전)
     weekly_review: str
     weekly_plan: str
 
@@ -184,6 +185,13 @@ def load_context_files() -> JournalContext:
     today_journal = READ_FILE(f"journal/daily/{current_date}.md")
     yesterday_journal = READ_FILE(f"journal/daily/{yesterday_date}.md")
 
+    # 최근 5일간의 저널 (패턴 및 연속성 파악을 위해)
+    recent_journals = []
+    for i in range(2, 6):  # 2-5일 전
+        past_date = current_date - timedelta(days=i)
+        journal_content = READ_FILE(f"journal/daily/{past_date}.md")
+        recent_journals.append(journal_content)
+
     # 주간 목표 및 회고
     weekly_review = READ_FILE(f"**/*저널*/**/*{current_year}*회고*W{current_week}*.md")
     weekly_plan = READ_FILE(f"**/*저널*/**/*{current_year}*Week*{current_week}*.md")
@@ -192,6 +200,7 @@ def load_context_files() -> JournalContext:
         user_info=user_info,
         today_journal=today_journal,
         yesterday_journal=yesterday_journal,
+        recent_journals=recent_journals,
         weekly_review=weekly_review,
         weekly_plan=weekly_plan,
     )
