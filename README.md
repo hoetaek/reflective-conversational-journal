@@ -60,13 +60,36 @@ AI와 함께하는 성찰 중심 저널링 시스템
    cd reflective-journal-companion
    ```
 
-4. **Obsidian 볼트 열기**
+4. **Obsidian vault 열기**
 
    - Obsidian 실행 → "Open folder as vault" → 프로젝트 폴더 선택
 
-5. **Claude Code 설정**
-   - [Claude Code 다운로드](https://claude.ai/code)
-   - 프로젝트 디렉토리에서 Claude Code 실행
+5. **Obsidian Terminal 플러그인 활성화**
+
+   - Settings → Community Plugins → Browse → "Terminal" 검색 및 설치
+   - 또는 이미 설치된 경우 플러그인 목록에서 활성화
+
+6. **Terminal 탭 열기**
+
+   **macOS/Linux:**
+
+   - Cmd+P (또는 Ctrl+P) → "Terminal: Open Terminal" 입력
+   - Terminal 열기 옵션에서 "통합" 선택
+
+   **Windows:**
+
+   - Ctrl+P → "Terminal: Open Terminal" 입력
+   - Terminal 열기 옵션에서 "통합" 선택
+
+7. **Claude Code 설치 및 실행**
+
+   ```bash
+   # npm으로 Claude Code 설치
+   npm install -g @anthropic-ai/claude-code
+
+   # Claude Code 실행
+   claude
+   ```
 
 ## 🚀 시작하기
 
@@ -124,7 +147,7 @@ reflective-journal-companion/
 
 - Claude Code 명령어 시스템 기반
 - 마크다운 파일 저장으로 호환성 보장
-- Obsidian 볼트와 완전 호환
+- Obsidian vault와 호환
 
 ## 🤝 기여하기
 
