@@ -33,7 +33,13 @@ AI와 함께하는 성찰 중심 저널링 시스템
    # 또는 https://nodejs.org 에서 직접 다운로드
    ```
 
-2. **Obsidian 설치**
+2. **Claude Code 설치**
+
+   ```bash
+   npm install -g @anthropic-ai/claude-code
+   ```
+
+3. **Obsidian 설치**
 
    **macOS:**
 
@@ -53,23 +59,22 @@ AI와 함께하는 성찰 중심 저널링 시스템
 
    - [https://obsidian.md/download](https://obsidian.md/download)
 
-3. **프로젝트 클론**
+4. **프로젝트 클론**
 
    ```bash
    git clone <repository-url>
    cd reflective-journal-companion
    ```
 
-4. **Obsidian vault 열기**
+5. **Obsidian vault 열기**
 
    - Obsidian 실행 → "Open folder as vault" → 프로젝트 폴더 선택
 
-5. **Obsidian Terminal 플러그인 활성화**
+6. **Terminal 플러그인 활성화**
 
-   - Settings → Community Plugins → Browse → "Terminal" 검색 및 설치
-   - 또는 이미 설치된 경우 플러그인 목록에서 활성화
+   - Settings → Community Plugins → 플러그인 목록에서 "Terminal" 활성화
 
-6. **Terminal 탭 열기**
+7. **Terminal 탭 열기**
 
    **macOS/Linux:**
 
@@ -81,13 +86,9 @@ AI와 함께하는 성찰 중심 저널링 시스템
    - Ctrl+P → "Terminal: Open Terminal" 입력
    - Terminal 열기 옵션에서 "통합" 선택
 
-7. **Claude Code 설치 및 실행**
+8. **Claude Code 실행**
 
    ```bash
-   # npm으로 Claude Code 설치
-   npm install -g @anthropic-ai/claude-code
-
-   # Claude Code 실행
    claude
    ```
 
