@@ -2,45 +2,96 @@
 
 AI와 함께하는 성찰 중심 저널링 시스템
 
-## 📖 개요
+일상의 경험을 의미 있는 성찰로 전환하는 AI 기반 저널링 도구입니다.
 
-Reflective Journal Companion은 일상의 경험을 의미 있는 성찰로 전환하도록 돕는 AI 기반 저널링 도구입니다. 단순한 일기 작성을 넘어서, 깊이 있는 자기 성찰과 지속적인 성장을 지원합니다.
+## ✨ 주요 기능
 
-## ✨ 핵심 특징
+- **AI 대화 기반 성찰**: 소크라테스식 질문을 통한 자연스러운 성찰 유도
+- **구조화된 프레임워크**: What-So What-Now What 방식의 체계적 성찰
+- **다층적 회고**: 일일/주간/장기 회고 시스템
 
-### 🤖 AI 동반자 시스템
-- **자연스러운 대화**: 기계적인 질문이 아닌 진정한 호기심으로 접근
-- **소크라테스식 질문법**: 스스로 깨달음에 도달하도록 유도하는 질문
-- **개인화된 성찰**: 사용자의 패턴과 성향을 이해한 맞춤형 대화
+## 📋 설치 요구사항
 
-### 📝 구조화된 성찰 프레임워크
-- **What-So What-Now What**: 경험 → 의미 → 행동으로 이어지는 체계적 성찰
-- **개별 항목 중심**: 하루의 주요 경험들을 개별적으로 깊이 탐구
-- **장기적 인사이트**: 일상의 작은 깨달음들을 축적하여 큰 그림 파악
+### 필수 설치 항목
 
-### 🔄 다층적 회고 시스템
-- **일일 성찰**: 저녁 시간 하루 돌아보기
-- **주간 회고**: 일주일간의 패턴과 트렌드 분석
-- **장기적 추적**: 성장 과정과 변화 양상 관찰
+- **[Node.js](https://nodejs.org/)**: JavaScript 런타임 (Claude Code 실행용)
+- **[Claude Code](https://claude.ai/code)**: AI 기반 명령어 시스템
+- **[Obsidian](https://obsidian.md/)**: 마크다운 기반 노트 앱
+- **Git**: 버전 관리 (선택사항)
+
+### 설치 방법
+
+1. **Node.js 설치**
+
+   ```bash
+   # macOS (Homebrew)
+   brew install node
+
+   # Windows (Chocolatey)
+   choco install nodejs
+
+   # 또는 https://nodejs.org 에서 직접 다운로드
+   ```
+
+2. **Obsidian 설치**
+
+   **macOS:**
+
+   ```bash
+   brew install --cask obsidian
+   ```
+
+   **Windows:**
+
+   ```bash
+   choco install obsidian
+   # 또는
+   winget install Obsidian.Obsidian
+   ```
+
+   **직접 다운로드:**
+
+   - [https://obsidian.md/download](https://obsidian.md/download)
+
+3. **프로젝트 클론**
+
+   ```bash
+   git clone <repository-url>
+   cd reflective-journal-companion
+   ```
+
+4. **Obsidian 볼트 열기**
+
+   - Obsidian 실행 → "Open folder as vault" → 프로젝트 폴더 선택
+
+5. **Claude Code 설정**
+   - [Claude Code 다운로드](https://claude.ai/code)
+   - 프로젝트 디렉토리에서 Claude Code 실행
 
 ## 🚀 시작하기
 
 ### 1. 초기 설정
+
 ```bash
 /start-journal
 ```
+
 개인 맥락 정보를 수집하여 `profile.md` 파일을 생성합니다. 이 정보는 AI가 더 개인화된 성찰을 도와주는 데 사용됩니다.
 
 ### 2. 일일 저널링
+
 ```bash
 /journal
 ```
+
 하루의 주요 경험들을 AI와 대화하며 성찰합니다. 생성된 저널은 `journal/daily/` 디렉토리에 저장됩니다.
 
 ### 3. 주간 회고
+
 ```bash
 /weekly
 ```
+
 지난 일주일간의 daily journal들을 분석하여 패턴을 발견하고 인사이트를 도출합니다.
 
 ## 📁 프로젝트 구조
@@ -63,42 +114,17 @@ reflective-journal-companion/
 └── README.md
 ```
 
-## 🎯 사용 방법
+## 🎯 사용법
 
-### 일일 저널링 워크플로우
+1. `/start-journal`: 개인 프로필 설정
+2. `/journal`: 일일 성찰 대화
+3. `/weekly`: 주간 회고 분석
 
-1. **자연스러운 시작**: AI가 "오늘 어땠어?"와 같은 자연스러운 질문으로 대화 시작
-2. **경험 탐구**: 하루의 주요 경험들을 하나씩 깊이 있게 탐구
-3. **구조화된 성찰**: 각 경험을 What-So What-Now What 프레임워크로 분석
-4. **통합적 정리**: 전체적인 하루의 의미와 내일을 위한 인사이트 도출
+## 🔧 기술 특징
 
-### 주간 회고 워크플로우
-
-1. **자동 수집**: 지난 일주일간의 daily journal 파일들을 자동으로 찾아서 읽기
-2. **패턴 분석**: AI가 일주일간의 내용을 분석하여 반복되는 테마와 트렌드 파악
-3. **인사이트 도출**: 개별 사건들을 연결하여 더 큰 의미와 학습 포인트 발견
-4. **협력적 완성**: 사용자와 대화하며 회고 내용을 보완하고 개선
-
-## 🌱 설계 철학
-
-### 성찰 중심
-단순한 기록이 아닌, 경험으로부터 의미를 찾고 성장으로 연결하는 것에 집중합니다.
-
-### 자연스러운 대화
-기계적인 체크리스트나 정형화된 질문보다는, 진정한 호기심을 바탕으로 한 자연스러운 대화를 추구합니다.
-
-### 점진적 개선
-완벽한 성찰보다는 지속 가능하고 점진적인 개선을 통해 장기적인 성장을 도모합니다.
-
-### 개인화
-각자의 고유한 성찰 패턴과 성향을 이해하고 존중하는 맞춤형 접근을 제공합니다.
-
-## 🔧 기술적 특징
-
-- **플레이스홀더 시스템**: `[SLOT_NAME]` 형식의 슬롯 기반 템플릿 치환
-- **자연어 처리**: AI와의 자연스러운 대화를 통한 콘텐츠 생성
-- **파일 기반 저장**: 마크다운 형식의 텍스트 파일로 저장하여 호환성과 지속성 보장
-- **모듈화된 명령어**: 각 기능별로 독립적인 .toml 명령어 파일
+- Claude Code 명령어 시스템 기반
+- 마크다운 파일 저장으로 호환성 보장
+- Obsidian 볼트와 완전 호환
 
 ## 🤝 기여하기
 
@@ -110,6 +136,6 @@ MIT License
 
 ---
 
-*"The unexamined life is not worth living." - Socrates*
+_"The unexamined life is not worth living." - Socrates_
 
 깊이 있는 성찰을 통해 더 의미 있는 삶을 살아가세요.
