@@ -1,25 +1,37 @@
 # 🌟 Reflective Journal Companion
 
+## About The Project
+
 AI와 함께하는 성찰 중심 저널링 시스템
 
 일상의 경험을 의미 있는 성찰로 전환하는 AI 기반 저널링 도구입니다.
 
-## ✨ 주요 기능
+### 왜 만들었나요?
+
+단순한 일기 작성을 넘어서, 진정한 성장을 위한 구조화된 성찰이 필요했기 때문입니다. 혼자서는 한계가 있는 깊이 있는 자기 탐구를 AI 코치와 함께 체계적으로 진행할 수 있습니다.
+
+### 주요 기능
 
 - **AI 대화 기반 성찰**: 소크라테스식 질문을 통한 자연스러운 성찰 유도
 - **구조화된 프레임워크**: What-So What-Now What 방식의 체계적 성찰
 - **다층적 회고**: 일일/주간/장기 회고 시스템
 
-## 📋 설치 요구사항
+## Built With
 
-### 필수 설치 항목
+- **[Claude Code](https://claude.ai/code)**: AI 기반 명령어 시스템
+- **[Obsidian](https://obsidian.md/)**: 마크다운 기반 노트 앱 및 환경
+- **Markdown**: 저널 템플릿 및 문서 작성
+
+## Getting Started
+
+### Prerequisites
 
 - **[Node.js](https://nodejs.org/)**: JavaScript 런타임 (Claude Code 실행용)
 - **[Claude Code](https://claude.ai/code)**: AI 기반 명령어 시스템
 - **[Obsidian](https://obsidian.md/)**: 마크다운 기반 노트 앱
 - **Git**: 버전 관리 (선택사항)
 
-### 설치 방법
+### Installation
 
 1. **Node.js 설치**
 
@@ -59,22 +71,24 @@ AI와 함께하는 성찰 중심 저널링 시스템
 
    - [https://obsidian.md/download](https://obsidian.md/download)
 
-4. **프로젝트 클론**
+### Setup
+
+1. **프로젝트 클론**
 
    ```bash
    git clone <repository-url>
    cd reflective-journal-companion
    ```
 
-5. **Obsidian vault 열기**
+2. **Obsidian vault 열기**
 
    - Obsidian 실행 → "Open folder as vault" → 프로젝트 폴더 선택
 
-6. **Terminal 플러그인 활성화**
+3. **Terminal 플러그인 활성화**
 
    - Settings → Community Plugins → 플러그인 목록에서 "Terminal" 활성화
 
-7. **Terminal 탭 열기**
+4. **Terminal 탭 열기**
 
    **macOS/Linux:**
 
@@ -86,13 +100,13 @@ AI와 함께하는 성찰 중심 저널링 시스템
    - Ctrl+P → "Terminal: Open Terminal" 입력
    - Terminal 열기 옵션에서 "통합" 선택
 
-8. **Claude Code 실행**
+5. **Claude Code 실행**
 
    ```bash
    claude
    ```
 
-## 🚀 시작하기
+## Usage
 
 ### 1. 초기 설정
 
@@ -118,7 +132,7 @@ AI와 함께하는 성찰 중심 저널링 시스템
 
 지난 일주일간의 daily journal들을 분석하여 패턴을 발견하고 인사이트를 도출합니다.
 
-## 📁 프로젝트 구조
+## Project Structure
 
 ```
 reflective-journal-companion/
@@ -138,13 +152,7 @@ reflective-journal-companion/
 └── README.md
 ```
 
-## 🎯 사용법
-
-1. `/profile`: 개인 프로필 설정
-2. `/journal`: 일일 성찰 대화
-3. `/weekly`: 주간 회고 분석
-
-## 📊 시스템 원리
+## How It Works
 
 ### 1. 🚶‍♂️ 사용자 여정
 
@@ -299,17 +307,20 @@ flowchart TD
     style G fill:#e3f2fd,stroke:#2196f3,stroke-width:2px
 ```
 
-## 🔧 기술 특징
+## Technical Features
 
-- Claude Code 명령어 시스템 기반
-- 마크다운 파일 저장으로 호환성 보장
-- Obsidian vault와 호환
+- **Claude Code 명령어 시스템**: 개발 환경 내에서 AI 기반 명령어 실행
+- **마크다운 기반 저장**: 플랫폼에 관계없이 호환되는 파일 형식으로 저장
+- **Obsidian 통합**: vault와의 완벽한 호환성으로 향상된 노트 작성 환경
+- **구조화된 성찰 프레임워크**: What-So What-Now What 방식의 체계적 자기분석
+- **템플릿 엔진**: 지능형 슬롯 치환을 통한 동적 콘텐츠 생성
+- **개인 맥락 통합**: 사용자 프로필을 활용한 AI의 개인화된 성찰 가이드
 
-## 🤝 기여하기
+## Contributing
 
 이 프로젝트는 성찰과 성장을 추구하는 모든 사람들을 위한 오픈 소스 프로젝트입니다. 버그 리포트, 기능 제안, 코드 기여 등 모든 형태의 기여를 환영합니다.
 
-## 📄 라이선스
+## License
 
 MIT License
 
