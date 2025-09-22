@@ -76,7 +76,7 @@ AI와 함께하는 성찰 중심 저널링 시스템
 1. **프로젝트 클론**
 
    ```bash
-   git clone <repository-url>
+   git clone git@github.com:hoetaek/reflective-journal-companion.git
    cd reflective-journal-companion
    ```
 
@@ -105,6 +105,10 @@ AI와 함께하는 성찰 중심 저널링 시스템
    ```bash
    claude
    ```
+
+   성공적으로 실행되면 다음과 같은 화면을 볼 수 있습니다:
+
+   ![Claude Code 실행 화면](assets/claude-code-setup.png)
 
 ## Usage
 
