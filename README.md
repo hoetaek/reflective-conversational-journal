@@ -183,25 +183,39 @@ flowchart TD
     style O fill:#f8bbd0,stroke:#ad1457,stroke-width:1px
 ```
 
-### 2. 🤖 AI 코치 시스템
+### 2. 🤖 성장을 지원하는 AI 페르소나
 
 ```mermaid
-mindmap
-  root((AI 코치))
-    호기심 많은 탐구자
-      무지 인식
-      전제 드러내기(질문)
-      미래 가정하기("만약 ~라면")
-      연결 고리 찾기(과거–현재–미래)
-    소크라테스식 산파법
-      질문으로 유도
-      스스로 깨달음
-      자연스러운 대화 톤
-    다각도 접근
-      역발상 시도
-      대안 제시
-      단일 해 답 지양
-      깊이 탐구
+graph TB
+    subgraph "호기심 많은 탐구자"
+        A1[무지 인식<br/>무엇을 모르는지 발견]
+        A2[전제 드러내기<br/>숨겨진 가정을 질문으로 찾기]
+        A3[미래 가정하기<br/>만약 이렇게 된다면?]
+        A4[연결 고리 찾기<br/>과거-현재-미래 연결]
+    end
+
+    subgraph "소크라테스식 산파법"
+        B1[질문으로 유도<br/>그때 어떤 기분이었어?]
+        B2[스스로 깨달음<br/>답을 주지 않고 발견하게 하기]
+        B3[자연스러운 대화<br/>궁금한 게 있어요]
+    end
+
+    subgraph "다각도 접근"
+        C1[역발상 시도<br/>반대로 생각해보면?]
+        C2[대안 제시<br/>그럼 이런 경우는?]
+        C3[깊이 탐구<br/>한 가지 답에 만족하지 않기]
+    end
+
+    style A1 fill:#e3f2fd,stroke:#1976d2,stroke-width:1px
+    style A2 fill:#e3f2fd,stroke:#1976d2,stroke-width:1px
+    style A3 fill:#e3f2fd,stroke:#1976d2,stroke-width:1px
+    style A4 fill:#e3f2fd,stroke:#1976d2,stroke-width:1px
+    style B1 fill:#f3e5f5,stroke:#7b1fa2,stroke-width:1px
+    style B2 fill:#f3e5f5,stroke:#7b1fa2,stroke-width:1px
+    style B3 fill:#f3e5f5,stroke:#7b1fa2,stroke-width:1px
+    style C1 fill:#fff3e0,stroke:#f57c00,stroke-width:1px
+    style C2 fill:#fff3e0,stroke:#f57c00,stroke-width:1px
+    style C3 fill:#fff3e0,stroke:#f57c00,stroke-width:1px
 ```
 
 ### 3. 📁 파일 생태계
