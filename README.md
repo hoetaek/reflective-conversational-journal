@@ -110,6 +110,19 @@ AI와 함께하는 성찰 중심 저널링 시스템
 
    ![Claude Code 실행 화면](assets/claude-code-setup.png)
 
+### Tips
+
+**📱 모바일 연결**
+
+- 모바일에서도 사용하고 싶다면 [Happy](https://github.com/slopus/happy) 연결을 추천합니다.
+
+**🎤 음성 입력 활용**
+
+- **Windows**: Windows키 + H로 음성 인식 기능 사용
+- **macOS**: 받아쓰기 기능 활용 (기본: fn키 두 번 또는 설정에 따라 fn+F5 등)
+
+음성으로 성찰하면 더 자연스럽고 깊이 있는 대화가 가능합니다.
+
 ## Usage
 
 ### 1. 초기 설정
