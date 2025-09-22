@@ -96,7 +96,7 @@ AI와 함께하는 성찰 중심 저널링 시스템
 ### 1. 초기 설정
 
 ```bash
-/start-journal
+/profile
 ```
 
 개인 맥락 정보를 수집하여 `profile.md` 파일을 생성합니다. 이 정보는 AI가 더 개인화된 성찰을 도와주는 데 사용됩니다.
@@ -123,7 +123,7 @@ AI와 함께하는 성찰 중심 저널링 시스템
 reflective-journal-companion/
 ├── .claude/commands/           # AI 명령어 정의
 │   ├── journal.md             # 일일 저널링 명령어
-│   ├── start-journal.md       # 초기 설정 명령어
+│   ├── profile.md             # 초기 설정 명령어
 │   ├── score.md               # 저널 평가 명령어
 │   └── weekly.md              # 주간 회고 명령어
 ├── templates/                  # 저널 템플릿들
@@ -133,13 +133,13 @@ reflective-journal-companion/
 ├── journal/                   # 생성된 저널들 (자동 생성)
 │   ├── daily/                 # 일일 저널들
 │   └── weekly/                # 주간 회고들
-├── profile.md                # 개인 맥락 정보 (start-journal로 생성)
+├── profile.md                # 개인 맥락 정보 (profile 명령어로 생성)
 └── README.md
 ```
 
 ## 🎯 사용법
 
-1. `/start-journal`: 개인 프로필 설정
+1. `/profile`: 개인 프로필 설정
 2. `/journal`: 일일 성찰 대화
 3. `/weekly`: 주간 회고 분석
 
