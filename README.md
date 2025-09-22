@@ -145,8 +145,6 @@ reflective-journal-companion/
 
 ## 📊 시스템 원리
 
-> Single Responsibility Principle에 따라 각 관심사별로 분리하여 시스템을 설명합니다.
-
 ### 1. 🚶‍♂️ 사용자 여정
 
 ```mermaid
@@ -265,101 +263,39 @@ graph LR
     TE -.->|주간| W2
 ```
 
-### 4. ⚙️ 명령어 실행
+### 4. 🔄 저널링 과정에서의 정보 활용
 
 ```mermaid
-sequenceDiagram
-    participant U as 사용자
-    participant T as 터미널
-    participant CC as Claude Code
-    participant AI as AI 코치
-    participant FS as 파일시스템
-
-    U->>T: /profile 입력
-    T->>CC: 명령어 전달
-    CC->>FS: .claude/commands/profile.md 읽기
-    FS-->>CC: 스크립트 반환
-    CC->>AI: 워크플로 실행
-
-    Note over AI: 자연스러운 톤으로 대화 시작
-
-    AI->>U: 개인화 질문
-    U->>AI: 관심사·목표 응답
-
-    Note over AI: 소크라테스식 추가 탐구
-
-    AI->>FS: profile-template.md 요청
-    FS-->>AI: 템플릿 반환
-    AI->>AI: 슬롯 치환·콘텐츠 생성
-    AI->>FS: profile.md 생성·저장
-    AI->>U: 검토 요청
-    U->>AI: 피드백
-    AI->>FS: profile.md 반영/수정
-    AI-->>U: 완료 알림
-```
-
-### 5. 🔄 데이터 흐름
-
-```mermaid
-flowchart LR
-    %% Stage 1: Context
-    subgraph Context Loading
-        P[profile.md]
-        Y[어제 저널]
-        R[최근 5일 저널]
-        W[주간 계획]
+flowchart TD
+    subgraph "🔍 시작 전 준비"
+        A[profile.md 읽기<br/>사용자 관심사, 목표 파악]
+        B[어제 저널 확인<br/>연속성 있는 대화를 위해]
+        C[최근 저널들 검토<br/>반복되는 패턴 파악]
     end
 
-    %% Stage 2: Analysis
-    subgraph Analysis Engine
-        PC[개인화 컨텍스트]
-        CA[연속성 확인]
-        PA[패턴 분석]
-        GA[목표 정렬]
+    subgraph "💬 대화 진행"
+        D[개인화된 질문<br/>profile 정보를 바탕으로]
+        E[What-So What-Now What<br/>구조화된 성찰 진행]
+        F[사용자 응답을 바탕으로<br/>새로운 저널 내용 생성]
     end
 
-    %% Stage 3: Conversation
-    subgraph Conversation Engine
-        NQ[자연스러운 질문 생성]
-        SR[소크라테스 반응]
-        EE[경험 탐구]
-        IE[인사이트 추출]
+    subgraph "📝 결과 저장"
+        G[오늘 저널 파일 생성<br/>journal/daily/YYYY-MM-DD.md]
+        H[내일 저널링 시<br/>오늘 저널이 어제 저널로 활용]
     end
 
-    %% Stage 4: Output
-    subgraph Output Generation
-        DS[동적 슬롯 생성]
-        TC[템플릿 조합]
-        FG[파일 생성]
-    end
+    A --> D
+    B --> D
+    C --> D
+    D --> E
+    E --> F
+    F --> G
+    G --> H
+    H -.->|다음 날| B
 
-    %% Flow
-    P --> PC
-    Y --> CA
-    R --> PA
-    W --> GA
-
-    PC --> NQ
-    CA --> NQ
-    PA --> SR
-    GA --> EE
-
-    NQ --> IE
-    SR --> IE
-    EE --> IE
-
-    IE --> DS
-    DS --> TC
-    TC --> FG
-
-    FG -.->|새 컨텍스트| P
-    FG -.->|다음날 참조| Y
-
-    %% Key Styles
-    style PC fill:#e1f5fe,stroke:#0277bd
-    style NQ fill:#f3e5f5,stroke:#6a1b9a
-    style IE fill:#fff3e0,stroke:#ef6c00
-    style FG fill:#e8f5e9,stroke:#2e7d32
+    style A fill:#e8f5e9,stroke:#4caf50,stroke-width:2px
+    style D fill:#fff3e0,stroke:#ff9800,stroke-width:2px
+    style G fill:#e3f2fd,stroke:#2196f3,stroke-width:2px
 ```
 
 ## 🔧 기술 특징
