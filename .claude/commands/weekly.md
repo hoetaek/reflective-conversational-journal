@@ -123,11 +123,11 @@ def analyze_weekly_patterns(journal_files: List[Dict]) -> WeeklyInsights:
 
     # AI 분석 요청
     analysis_prompt = f"""
-    다음은 지난 일주일간의 daily journal 내용들입니다:
+    다음은 지난 일주일간의 daily journal 내용들이야:
 
     {all_content}
 
-    이 내용들을 분석하여 다음 항목들을 정리해주세요:
+    이 내용들을 분석해서 다음 항목들을 정리해줘:
 
     1. 완료한 프로젝트들 (구체적인 성과나 완성한 작업들)
     2. 좋아했던 것들 (즐거웠거나 만족스러웠던 경험들)
@@ -137,7 +137,7 @@ def analyze_weekly_patterns(journal_files: List[Dict]) -> WeeklyInsights:
     6. 배운 것들 (새로운 깨달음이나 학습 내용들)
     7. 다음 주를 위한 인사이트 (패턴 분석 결과와 개선 방향)
 
-    각 항목을 numbered list 형식으로 작성해주세요.
+    각 항목을 numbered list 형식으로 작성해줘.
     """
 
     return ANALYZE_CONTENT(analysis_prompt)
@@ -208,7 +208,7 @@ def load_profile_context():
     if FILE_EXISTS("profile.md"):
         return READ_FILE("profile.md")
     else:
-        return "profile 파일이 없습니다. 더 개인화된 회고를 위해 /start-journal 명령어로 profile 파일을 먼저 생성하는 것을 추천합니다."
+        return "profile 파일이 없어. 더 개인화된 회고를 위해 /start-journal 명령어로 profile 파일을 먼저 생성하는 게 좋을 거야."
 
 # --- 메인 워크플로우 실행 (Main Workflow Execution) ---
 
