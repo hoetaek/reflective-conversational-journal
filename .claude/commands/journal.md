@@ -305,7 +305,7 @@ def start_context_conversation(analysis: AnalysisSummary):
     print(connection_question)
 
 def analyze_goal_alignment_and_progress(analysis: AnalysisSummary):
-    """월간-주간 목표의 연결성과 현재 진행률을 분석해서 의미 있는 피드백 제공"""
+    """월간-주간 목표의 연결성과 현재 진행률을 분석하여 의미 있는 피드백을 제공합니다"""
 
     monthly_goal = analysis.monthly_alignment
     weekly_goal = analysis.weekly_alignment
@@ -466,5 +466,5 @@ if **name** == "**main**":
 
     # 완료
     final_journal = GET_FINAL_JOURNAL()
-    print("저널링이 완료되었습니다.")
+    print("저널링이 완료됐어.")
     return final_journal
