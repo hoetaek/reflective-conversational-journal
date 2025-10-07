@@ -203,12 +203,12 @@ def collaborate_on_review(file_path: str):
 
 def load_profile_context():
     """
-    profile.md 파일이 있으면 로드하여 맥락 정보로 활용합니다.
+    프로필.md 파일이 있으면 로드하여 맥락 정보로 활용합니다.
     """
-    if FILE_EXISTS("profile.md"):
-        return READ_FILE("profile.md")
+    if FILE_EXISTS("프로필.md"):
+        return READ_FILE("프로필.md")
     else:
-        return "profile 파일이 없어. 더 개인화된 회고를 위해 /start-journal 명령어로 profile 파일을 먼저 생성하는 게 좋을 거야."
+        return "프로필 파일이 없어. 더 개인화된 회고를 위해 /start-journal 명령어로 프로필 파일을 먼저 생성하는 게 좋을 거야."
 
 # --- 메인 워크플로우 실행 (Main Workflow Execution) ---
 

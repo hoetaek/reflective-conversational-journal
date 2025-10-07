@@ -132,10 +132,10 @@ def load_context_files() -> JournalContext:
 
     # 🔍 로드할 파일 목록 먼저 출력 (AI 실수 방지)
     print("📋 컨텍스트 파일 체크리스트:")
-    print(f"1. 사용자 정보: **/profile.md")
-    print(f"2. 오늘 저널 (i=0): **/*저널*/**/{current_date}.md")
-    print(f"3. 어제 저널 (i=1): **/*저널*/**/{current_date - timedelta(days=1)}.md")
-    print(f"4. 그저께 저널 (i=2): **/*저널*/**/{current_date - timedelta(days=2)}.md")
+    print(f"1. 사용자 정보: **/프로필.md")
+    print(f"2. 오늘 저널 (i=0): 저널/{current_year}/{current_month}/{current_date}.md")
+    print(f"3. 어제 저널 (i=1): 저널/YYYY/MM/{current_date - timedelta(days=1)}.md")
+    print(f"4. 그저께 저널 (i=2): 저널/YYYY/MM/{current_date - timedelta(days=2)}.md")
     print("")
 
     # IMPORTANT: READ_FILE에서 glob 패턴(**) 사용 시:
@@ -145,13 +145,16 @@ def load_context_files() -> JournalContext:
     # Read tool은 glob 패턴을 직접 지원하지 않습니다.
 
     # 사용자 정보
-    user_info = READ_FILE("**/profile.md")
+    user_info = READ_FILE("**/프로필.md")
 
     # 최근 3일 저널 파일들 (오늘, 어제, 그저께)
+    # 경로 형식: 저널/YYYY/MM/YYYY-MM-DD.md
     recent_journals = []
     for i in range(3):
         date_offset = current_date - timedelta(days=i)
-        journal = READ_FILE(f"**/*저널*/**/{date_offset}.md")
+        year = date_offset.year
+        month = date_offset.strftime("%m")
+        journal = READ_FILE(f"저널/{year}/{month}/{date_offset}.md")
         recent_journals.append(journal)
 
     return JournalContext(

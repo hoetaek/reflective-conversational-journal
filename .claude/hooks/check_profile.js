@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Profile checker hook for Claude Code.
- * Checks if profile.md exists and guides users to the appropriate next step.
+ * Checks if 프로필.md exists and guides users to the appropriate next step.
  */
 const fs = require('fs');
 const path = require('path');
@@ -10,9 +10,9 @@ function main() {
     try {
         // Get project directory from environment
         const projectDir = process.env.CLAUDE_PROJECT_DIR || process.cwd();
-        const profilePath = path.join(projectDir, 'profile.md');
+        const profilePath = path.join(projectDir, '프로필.md');
 
-        // Check: profile.md 존재 여부
+        // Check: 프로필.md 존재 여부
         if (!fs.existsSync(profilePath)) {
             const output = {
                 hookSpecificOutput: {
@@ -34,15 +34,11 @@ function main() {
             process.exit(0);
         }
 
-        // profile.md가 있는 경우: 프로필 내용과 함께 저널링 시작 안내
-        const profileContent = fs.readFileSync(profilePath, 'utf-8');
-
+        // 프로필.md가 있는 경우: 저널링 시작 안내
         const output = {
             hookSpecificOutput: {
                 hookEventName: "SessionStart",
-                additionalContext:
-                    `📋 사용자 프로필:\n${profileContent}\n\n` +
-                    "다시 온 걸 환영해! 함께 성찰 저널을 작성해볼까? /journal을 입력해봐!"
+                additionalContext: "\n\n다시 온 걸 환영해! 함께 성찰 저널을 작성해볼까? /journal을 입력해봐!\n\n"
             }
         };
         console.log(JSON.stringify(output));

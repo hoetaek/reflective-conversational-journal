@@ -30,3 +30,8 @@ venv.bak/
 # Obsidian - exclude only personal/temporary settings
 .obsidian/workspace*
 .obsidian/plugins/*/data.json
+*.css
+
+# Journal
+프로필.md
+저널/
