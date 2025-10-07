@@ -60,7 +60,7 @@ def start_natural_conversation():
     print("")
     print("충분히 이야기했다 싶으면 '이 정도면 될 것 같아' 라고 말해줘. 내가 궁금한 게 많아서 질문이 많을 수 있거든!ㅋㅋㅋ")
     print("완벽하게 말할 필요 없어. 언제든 수정할 수 있으니까!")
-    print("대화 끝나면 왼쪽 사이드바에 프로필.md 파일이 만들어질 거야.")
+    print("대화 끝나면 왼쪽 사이드바에 프로필 파일이 만들어질 거야.")
     print("")
 
     # 가벼운 시작
@@ -235,5 +235,7 @@ if __name__ == "__main__":
 
     print("너만의 성장 프로필이 완성됐어!")
     print("오늘의 저널 파일도 준비해뒀어!")
-    print("이제 /journal 명령어로 저널링을 시작할 수 있어.")
+
+    # MANDATORY
+    RUN SLASHCOMMAND('/journal')
 ```
