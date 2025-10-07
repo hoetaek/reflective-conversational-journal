@@ -64,16 +64,8 @@ from typing import List, Dict, Any
 
 @dataclass
 class ReflectionItem:
-    """개별 성찰 항목 (Rs 섹션)"""
+    """개별 성찰 항목 (Reflections 섹션) - What What What 프레임워크"""
     item_name: str
-    outcome: str
-    positive: str
-    improvement: str
-    learning: str
-
-@dataclass
-class OverallReview:
-    """전체 돌아보기 (Ro 섹션)"""
     what: str
     so_what: str
     now_what: str
@@ -84,7 +76,6 @@ class JournalEntry:
     date: str  # "2025-10-07"
     free_notes_summary: str
     reflections: List[ReflectionItem]  # 최대 3개 (가장 중요한 것만)
-    overall_review: OverallReview
 
 @dataclass
 class JournalContext:
@@ -101,46 +92,36 @@ class AnalysisSummary:
 # --- 저널 템플릿 매핑 (Journal Template Mapping) ---
 
 SLOT_PREFIX_MAP = {
-    # Rs (개별 항목) 섹션
-    "→ 결과:": "outcome_result",
-    "👍 좋았던 점:": "positive_aspect",
-    "👎 아쉬운 점:": "area_for_improvement",
-    "💡 배운 점:": "lesson_learned",
-    # Ro (전체 돌아보기) 섹션
-    "🔍 What? (이 시간대에 무슨 일이 있었나?):": "event_description",
-    "💡 So What? (그 일들이 어떤 의미/교훈을 주었나?):": "meaning_insight",
-    "✨ Now What? (그래서 다음 시간대/내일을 위해 무엇을 할 것인가?):": "future_action",
-    # 기타 섹션
-    "전반적 상태 (기분/만족도):": "overall_state",
-    "완료 시간:": "completion_time",
+    # Reflections 섹션 - What What What 프레임워크
+    "🔍 What? (무슨 일이 있었나?):": "what",
+    "💡 So What? (어떤 의미/교훈이 있었나?):": "so_what",
+    "✨ Now What? (다음에 어떻게 적용할까?):": "now_what",
 }
 
 # --- 저널 파싱 함수 (Journal Parsing Functions) ---
 
 def extract_all_reflections(content: str) -> List[ReflectionItem]:
     """
-    저널 내용에서 Rs 섹션의 성찰 항목을 추출합니다 (최대 3개).
+    저널 내용에서 Reflections 섹션의 성찰 항목을 추출합니다 (최대 3개).
 
-    Rs 섹션 형식:
+    Reflections 섹션 형식 (What What What 프레임워크):
     #### [항목명]
-    - → 결과: ...
-    - 👍 좋았던 점: ...
-    - 👎 아쉬운 점: ...
-    - 💡 배운 점: ...
+    - 🔍 What? (무슨 일이 있었나?): ...
+    - 💡 So What? (어떤 의미/교훈이 있었나?): ...
+    - ✨ Now What? (다음에 어떻게 적용할까?): ...
     """
     reflections: List[ReflectionItem] = []
 
     # 마크다운 파싱 로직
-    # "## Rs" 섹션 찾기 → 각 "####" 항목 파싱
+    # "## Reflections" 섹션 찾기 → 각 "####" 항목 파싱
     # SLOT_PREFIX_MAP을 활용하여 각 필드 추출
 
-    for each_item in RS_SECTION:
+    for each_item in REFLECTIONS_SECTION:
         item = ReflectionItem(
             item_name=EXTRACT_ITEM_NAME(each_item),
-            outcome=EXTRACT_VALUE_BY_PREFIX("→ 결과:", each_item),
-            positive=EXTRACT_VALUE_BY_PREFIX("👍 좋았던 점:", each_item),
-            improvement=EXTRACT_VALUE_BY_PREFIX("👎 아쉬운 점:", each_item),
-            learning=EXTRACT_VALUE_BY_PREFIX("💡 배운 점:", each_item)
+            what=EXTRACT_VALUE_BY_PREFIX("🔍 What?", each_item),
+            so_what=EXTRACT_VALUE_BY_PREFIX("💡 So What?", each_item),
+            now_what=EXTRACT_VALUE_BY_PREFIX("✨ Now What?", each_item)
         )
         reflections.append(item)
 
@@ -154,36 +135,17 @@ def extract_all_reflections(content: str) -> List[ReflectionItem]:
 
     return reflections
 
-def extract_overall_review(content: str) -> OverallReview:
-    """
-    Ro 섹션의 전체 돌아보기를 추출합니다.
-
-    Ro 섹션 형식:
-    ## Ro - 전체 돌아보기
-    - 🔍 What? (오늘 무슨 일이 있었나?): ...
-    - 💡 So What? (어떤 의미/교훈이 있었나?): ...
-    - ✨ Now What? (내일부터 어떻게 할 것인가?): ...
-    """
-    ro_section = EXTRACT_SECTION(content, "Ro - 전체 돌아보기")
-
-    return OverallReview(
-        what=EXTRACT_VALUE_BY_PREFIX("🔍 What?", ro_section),
-        so_what=EXTRACT_VALUE_BY_PREFIX("💡 So What?", ro_section),
-        now_what=EXTRACT_VALUE_BY_PREFIX("✨ Now What?", ro_section)
-    )
-
 def parse_journal_to_entry(content: str, date: str) -> JournalEntry:
     """
     저널 마크다운 파일 내용을 구조화된 JournalEntry로 변환합니다.
     """
-    # Rs 섹션에서 항목 추출 (최대 3개)
+    # Reflections 섹션에서 항목 추출 (최대 3개)
     reflections: List[ReflectionItem] = extract_all_reflections(content)
 
     return JournalEntry(
         date=date,
         free_notes_summary=SUMMARIZE_FREE_NOTES(content),
-        reflections=reflections,  # 최대 3개
-        overall_review=extract_overall_review(content)
+        reflections=reflections  # 최대 3개
     )
 
 # --- STEP 1: 세션 시작 (Context Load & Greeting) ---
