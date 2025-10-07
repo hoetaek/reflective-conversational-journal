@@ -42,7 +42,7 @@ function main() {
                 hookEventName: "SessionStart",
                 additionalContext:
                     `📋 사용자 프로필:\n${profileContent}\n\n` +
-                    "오늘 하루는 어땠어? /journal 명령어로 저널링을 시작해보자!"
+                    "다시 온 걸 환영해! 함께 성찰 저널을 작성해볼까? /journal을 입력해봐!"
             }
         };
         console.log(JSON.stringify(output));
