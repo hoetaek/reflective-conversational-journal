@@ -7,7 +7,7 @@
 ## 명령어 목적
 
 1. **라포르(신뢰 관계) 형성**: 사용자와 따뜻하고 자연스러운 대화를 통해 편안한 관계 만들기
-2. **개인 프로필 생성**: 대화 내용을 바탕으로 **개인 프로필(profile.md)** 파일 생성
+2. **개인 프로필 생성**: 대화 내용을 바탕으로 **개인 프로필(프로필.md)** 파일 생성
 3. **맞춤형 저널링 기반 마련**: 이후 저널링 과정에서 더 개인화된 가이드 제공
 
 ## 🎯 핵심 철학
@@ -59,7 +59,7 @@ def start_natural_conversation():
     print("")
     print("충분히 이야기했다 싶으면 '이 정도면 될 것 같아' 라고 말해줘. 내가 궁금한 게 많아서 질문이 많을 수 있거든!ㅋㅋㅋ")
     print("완벽하게 말할 필요 없어. 언제든 수정할 수 있으니까!")
-    print("대화 끝나면 왼쪽 사이드바에 profile.md 파일이 만들어질 거야.")
+    print("대화 끝나면 왼쪽 사이드바에 프로필.md 파일이 만들어질 거야.")
     print("")
 
     # 가벼운 시작
@@ -122,7 +122,7 @@ def generate_user_profile(conversation_data: ConversationData) -> UserProfile:
 
 def create_profile_file(profile: UserProfile) -> str:
     """
-    사용자 프로필을 바탕으로 profile.md 파일을 생성합니다.
+    사용자 프로필을 바탕으로 프로필.md 파일을 생성합니다.
     """
     profile_template = """# 나에 대해
 
@@ -151,8 +151,8 @@ def create_profile_file(profile: UserProfile) -> str:
 
     content = format_profile_content(profile, profile_template)
 
-    # profile.md 파일 생성
-    file_path = "profile.md"
+    # 프로필.md 파일 생성
+    file_path = "프로필.md"
     CREATE_FILE(file_path, content)
 
     return file_path
@@ -162,7 +162,7 @@ def review_and_refine_profile(file_path: str):
     생성된 프로필을 사용자와 함께 검토하고 개선합니다.
     """
     print("정말 좋은 이야기들을 들려줬네!")
-    print("이런 내용들을 정리해서 앞으로 저널링할 때 도움이 되도록 profile.md 파일을 만들어뒀어.")
+    print("이런 내용들을 정리해서 앞으로 저널링할 때 도움이 되도록 프로필.md 파일을 만들어뒀어.")
 
     # 파일 내용 보여주기
     content = READ_FILE(file_path)
@@ -198,12 +198,24 @@ if __name__ == "__main__":
     # STEP 3: 사용자 프로필 생성
     user_profile = generate_user_profile(conversation_data)
 
-    # STEP 4: profile.md 파일 생성
+    # STEP 4: 프로필.md 파일 생성
     profile_file = create_profile_file(user_profile)
 
     # STEP 5: 프로필 검토 및 개선
     review_and_refine_profile(profile_file)
 
+    # STEP 6: 오늘의 저널 파일 생성
+    current_date = date.today()
+    current_year = current_date.year
+    current_month = current_date.strftime("%m")
+    journal_dir = f"저널/{current_year}/{current_month}"
+    journal_file = f"{journal_dir}/{current_date}.md"
+
+    # 디렉토리 및 저널 파일 생성
+    CREATE_DIRECTORY(journal_dir)
+    CREATE_FILE(journal_file, f"# {current_date}\n\n")
+
     print("너만의 성장 프로필이 완성됐어!")
-    print("이제 /journal 명령어로 일일 저널링을 시작할 수 있어.")
+    print("오늘의 저널 파일도 준비해뒀어!")
+    print("이제 /journal 명령어로 저널링을 시작할 수 있어.")
 ```
