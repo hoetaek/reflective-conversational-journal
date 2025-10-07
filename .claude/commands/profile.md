@@ -204,16 +204,26 @@ if __name__ == "__main__":
     # STEP 5: 프로필 검토 및 개선
     review_and_refine_profile(profile_file)
 
-    # STEP 6: 오늘의 저널 파일 생성
+    # STEP 6: 오늘의 저널 파일 생성 (템플릿 사용)
     current_date = date.today()
     current_year = current_date.year
     current_month = current_date.strftime("%m")
     journal_dir = f"저널/{current_year}/{current_month}"
     journal_file = f"{journal_dir}/{current_date}.md"
 
-    # 디렉토리 및 저널 파일 생성
+    # MANDATORY: 반드시 저널 파일을 생성해야 함
+    # 1. 디렉토리 생성
     CREATE_DIRECTORY(journal_dir)
-    CREATE_FILE(journal_file, f"# {current_date}\n\n")
+
+    # 2. 템플릿 파일 읽기
+    template_content = READ_FILE("templates/daily-note-template.md")
+
+    # 3. 플레이스홀더 치환
+    # {{date}} → 실제 날짜
+    journal_content = template_content.replace("{{date}}", str(current_date))
+
+    # 4. 저널 파일 생성
+    CREATE_FILE(journal_file, journal_content)
 
     print("너만의 성장 프로필이 완성됐어!")
     print("오늘의 저널 파일도 준비해뒀어!")
