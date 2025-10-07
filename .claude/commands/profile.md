@@ -230,12 +230,8 @@ if __name__ == "__main__":
     # 2. 템플릿 파일 읽기
     template_content = READ_FILE("templates/daily-note-template.md")
 
-    # 3. 플레이스홀더 치환
-    # {{date}} → 실제 날짜
-    journal_content = template_content.replace("{{date}}", str(current_date))
-
-    # 4. 저널 파일 생성
-    CREATE_FILE(journal_file, journal_content)
+    # 3. 저널 파일 생성 (템플릿 그대로 사용)
+    CREATE_FILE(journal_file, template_content)
 
     print("너만의 성장 프로필이 완성됐어!")
     print("오늘의 저널 파일도 준비해뒀어!")
