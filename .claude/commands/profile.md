@@ -38,6 +38,7 @@ class UserProfile:
     values_and_motivations: List[str]
     current_situation: Dict[str, str]
     past_growth_experiences: List[str]
+    personal_message: str = ""  # 응원 메시지
 
 @dataclass
 class ConversationData:
@@ -144,6 +145,9 @@ def create_profile_file(profile: UserProfile) -> str:
 ## 🌟 과거 성장 경험
 {past_experiences}
 
+## 💪 나를 위한 응원 메시지
+{personal_message}
+
 ---
 *이 프로필은 저널링 과정에서 너를 더 잘 이해하고 맞춤형 가이드를 제공하기 위해 만들어졌어.*
 *언제든지 수정하거나 업데이트할 수 있어.*
@@ -195,8 +199,16 @@ if __name__ == "__main__":
         # 지속적인 대화 진행
         continue_conversation(conversation_data)
 
+    # STEP 2.5: 응원 메시지 수집
+    print("")
+    print("마지막으로 하나만 더 물어볼게!")
+    print("저널링을 시작할 때마다 너에게 힘을 주는 응원 메시지를 하나 적어줄래?")
+    print("예: '오늘도 조금씩 성장하는 나를 응원해', '천천히, 나의 속도로 나아가자'")
+    personal_message = ASK_FOR_PERSONAL_MESSAGE()
+
     # STEP 3: 사용자 프로필 생성
     user_profile = generate_user_profile(conversation_data)
+    user_profile.personal_message = personal_message  # 응원 메시지 추가
 
     # STEP 4: 프로필.md 파일 생성
     profile_file = create_profile_file(user_profile)
