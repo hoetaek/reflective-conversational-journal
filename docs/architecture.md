@@ -8,7 +8,7 @@
 
 ### 2. Class Diagram: 데이터 구조
 
-![class-diagram](https://raw.githubusercontent.com/hoetaek/reflective-journal-companion/refs/heads/main/docs/class-diagram.txt)
+![class-diagram](https://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/hoetaek/reflective-journal-companion/refs/heads/main/docs/class-diagram.txt)
 
 **파일 구조:**
 - `프로필.md` - 사용자 맥락 정보
