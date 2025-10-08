@@ -10,5 +10,13 @@
         ]
       }
     ]
+  },
+  "permissions": {
+    "allow": [
+      "SlashCommand(/journal)",
+      "SlashCommand(/profile)"
+    ],
+    "deny": [],
+    "ask": []
   }
 }
