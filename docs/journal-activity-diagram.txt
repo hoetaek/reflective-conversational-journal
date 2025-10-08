@@ -1,0 +1,31 @@
+@startuml
+start
+:Claude Code 실행;
+:Hook이 프로필 + 최근 3일 저널 경로 제공;
+:AI가 파일 읽기;
+:AI가 /journal 명령 실행;
+:AI가 응원 메시지 출력;
+:AI가 프로필/과거 저널 연결;
+while (대화 계속?) is (Yes)
+  :자유로운 대화 시작;
+  if (의미있는 내용?) then (Yes)
+    :Free Notes에 실시간 기록;
+  else (No)
+  endif
+endwhile (No)
+:성찰 항목 후보 제시;
+if (사용자 선택?) then (있음)
+  :What-So What-Now What 작성;
+else (없음)
+endif
+if (Long-term Insights?) then (Yes)
+  :장기 교훈 작성;
+else (No)
+endif
+if (정리 필요?) then (Yes)
+  :주석/빈 섹션 제거;
+else (No)
+endif
+:저널 완료;
+stop
+@enduml

@@ -1,0 +1,26 @@
+@startuml
+class Profile {
+        +string name
+        +string goals
+        +string values
+        +string support_message
+    }
+
+    class DailyJournal {
+        +date date
+        +string free_notes
+        +string reflections
+        +string long_term_insights
+    }
+
+    class WeeklyReview {
+        +date week
+        +string completed
+        +string enjoyed
+        +string learned
+        +string next_insights
+    }
+
+    DailyJournal ..> Profile : depends on
+     WeeklyReview "1" o-- "7" DailyJournal : aggregates
+@enduml

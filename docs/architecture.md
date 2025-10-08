@@ -4,64 +4,9 @@
 
 ### 1. Activity Diagram: 사용자 여정
 
-```plantuml
-@startuml
-start
-:사용자가 Claude Code 실행;
-:SessionStart Hook 발동;
-if (프로필.md 존재?) then (없음)
-  :Hook이 AI에게 /profile 실행 지시;
-  :AI가 /profile 명령 실행;
-  :AI와 자연스러운 대화로 개인 맥락 파악;
-  :프로필.md 생성;
-  :AI가 /journal 명령 실행 (/profile 완료 시);
-else (있음)
-  :Hook이 프로필 + 최근 3일 저널 경로 제공;
-  :AI가 파일 읽기;
-  :AI가 /journal 명령 실행;
-endif
-:AI가 프로필 기반 성찰 대화;
-:What → So What → Now What 구조화된 성찰;
-:일일 저널 작성 완료;
-if (일주일 경과?) then (Yes)
-  :사용자가 /weekly 입력;
-  :일주일 저널 분석 및 패턴 발견;
-  :주간 회고 생성;
-endif
-stop
-@enduml
-```
 
 ### 2. Class Diagram: 데이터 구조
 
-```plantuml
-@startuml
-class Profile {
-        +string name
-        +string goals
-        +string values
-        +string support_message
-    }
-
-    class DailyJournal {
-        +date date
-        +string free_notes
-        +string reflections
-        +string long_term_insights
-    }
-
-    class WeeklyReview {
-        +date week
-        +string completed
-        +string enjoyed
-        +string learned
-        +string next_insights
-    }
-
-    DailyJournal ..> Profile : depends on
-     WeeklyReview "1" o-- "7" DailyJournal : aggregates
-@enduml
-```
 
 **파일 구조:**
 - `프로필.md` - 사용자 맥락 정보
@@ -70,39 +15,6 @@ class Profile {
 
 ### 3. Activity Diagram: 저널링 프로세스
 
-```plantuml
-@startuml
-start
-:Claude Code 실행;
-:Hook이 프로필 + 최근 3일 저널 경로 제공;
-:AI가 파일 읽기;
-:AI가 /journal 명령 실행;
-:AI가 응원 메시지 출력;
-:AI가 프로필/과거 저널 연결;
-while (대화 계속?) is (Yes)
-  :자유로운 대화 시작;
-  if (의미있는 내용?) then (Yes)
-    :Free Notes에 실시간 기록;
-  else (No)
-  endif
-endwhile (No)
-:성찰 항목 후보 제시;
-if (사용자 선택?) then (있음)
-  :What-So What-Now What 작성;
-else (없음)
-endif
-if (Long-term Insights?) then (Yes)
-  :장기 교훈 작성;
-else (No)
-endif
-if (정리 필요?) then (Yes)
-  :주석/빈 섹션 제거;
-else (No)
-endif
-:저널 완료;
-stop
-@enduml
-```
 
 ## Design Philosophy
 
