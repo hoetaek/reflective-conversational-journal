@@ -59,11 +59,9 @@ description: 성찰 저널 작성 - 실시간 메타인지 촉진
 ```
 3. 사용자 선택에 따라 Reflections 섹션에 What What What 형식으로 작성
    - Free Notes에서 What 추출
-   - So What, Now What이 없으면 자연스럽게 물어보기:
-     - 예: "이거 어떤 의미가 있었어? 뭘 배웠어?"
-     - 예: "다음엔 어떻게 써먹을 것 같아?"
-   - 기계적 질문 금지, 친구처럼 자연스럽게
-   - "별로", "잘 모르겠어" → 존중하고 What만 작성
+   - So What, Now What이 없으면 자연스럽게 물어보기
+   - CLAUDE.md의 페르소나 철학 따르기 (로저스 + 소크라테스)
+   - "별로", "잘 모르겠어" → 즉시 존중하고 What만 작성
 4. Long-term Insights 제안:
 ```
 Long-term Insights로 남길 만한 게 있어:
