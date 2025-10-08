@@ -2,12 +2,30 @@
 /**
  * Profile checker hook for Claude Code.
  * Checks if 프로필.md exists and guides users to the appropriate next step.
+ * Only runs on "startup" - not on resume/continue.
  */
 const fs = require('fs');
 const path = require('path');
 
 function main() {
     try {
+        // Read hook input from stdin
+        const stdinBuffer = fs.readFileSync(0, 'utf-8'); // fd 0 is stdin
+        const hookInput = JSON.parse(stdinBuffer);
+
+        // Only run on "startup", skip on "resume", "clear", "compact"
+        if (hookInput.source !== 'startup') {
+            // Return empty output for non-startup sessions
+            const emptyOutput = {
+                hookSpecificOutput: {
+                    hookEventName: "SessionStart",
+                    additionalContext: ""
+                }
+            };
+            console.log(JSON.stringify(emptyOutput));
+            process.exit(0);
+        }
+
         // Get project directory from environment
         const projectDir = process.env.CLAUDE_PROJECT_DIR || process.cwd();
         const profilePath = path.join(projectDir, '프로필.md');
@@ -76,9 +94,9 @@ function main() {
             hookSpecificOutput: {
                 hookEventName: "SessionStart",
                 additionalContext:
-                    "IMPORTANT: I must read the following files using the Read tool:\n\n" +
+                    "\nIMPORTANT: I must read the following files using the Read tool:\n\n" +
                     fileList + "\n\n" +
-                    "After reading these files, I will run the /journal command with SlashCommand tool.\n\n" +
+                    "After reading these files, I will run the /journal command with SlashCommand tool.\n" +
                     "---\n\n" +
                     "다시 온 걸 환영해! 성찰 저널 쓸 준비 됐어?\n\n"
             }
