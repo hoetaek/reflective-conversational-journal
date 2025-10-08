@@ -2,5 +2,5 @@
   "autorun": true,
   "folder": "",
   "template": "templates/daily-note-template",
-  "format": "[저널]/YYYY/MM/YYYY-MM-DD"
+  "format": "[저널]/YYYY/MMMM/YYYY-MM-DD"
 }
