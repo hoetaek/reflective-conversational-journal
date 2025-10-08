@@ -47,11 +47,12 @@ function main() {
             date.setDate(date.getDate() - i);
 
             const year = date.getFullYear();
-            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const monthNumber = String(date.getMonth() + 1).padStart(2, '0');
+            const monthName = date.toLocaleString('ko-KR', { month: 'long' });
             const day = String(date.getDate()).padStart(2, '0');
-            const dateStr = `${year}-${month}-${day}`;
+            const dateStr = `${year}-${monthNumber}-${day}`;
 
-            const journalPath = path.join(projectDir, '저널', String(year), month, `${dateStr}.md`);
+            const journalPath = path.join(projectDir, '저널', String(year), monthName, `${dateStr}.md`);
 
             if (fs.existsSync(journalPath)) {
                 journalFiles.push({
