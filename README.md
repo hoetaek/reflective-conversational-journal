@@ -290,7 +290,8 @@ reflective-journal-companion/
 ├── 저널/                     # 생성된 저널들 (자동 생성)
 │   └── YYYY/                  # 연도별 폴더
 │       └── M월/               # 월별 폴더
-│           └── YYYY-MM-DD.md  # 일일 저널
+│           ├── YYYY-MM-DD.md  # 일일 저널
+│           └── W[주번호] 성찰.md  # 주간 성찰 (예: W41 성찰.md)
 ├── 프로필.md                 # 개인 맥락 정보 (profile 명령어로 생성)
 └── README.md
 ```

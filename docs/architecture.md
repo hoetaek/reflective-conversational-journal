@@ -95,13 +95,13 @@ graph LR
     subgraph Generated Files
         P[프로필.md]
         subgraph Daily Journals
-            D1[2025-01-15.md]
-            D2[2025-01-16.md]
-            D3[2025-01-17.md]
+            D1[2025/1월/2025-01-15.md]
+            D2[2025/1월/2025-01-16.md]
+            D3[2025/1월/2025-01-17.md]
         end
         subgraph Weekly Reviews
-            W1[weekly-2025-01-13.md]
-            W2[weekly-2025-01-20.md]
+            W1[2025/1월/W03 성찰.md]
+            W2[2025/1월/W04 성찰.md]
         end
     end
 
