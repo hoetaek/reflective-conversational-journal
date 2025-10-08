@@ -27,7 +27,8 @@ function main() {
                     "- 목표\n" +
                     "- 가치관 등\n\n" +
                     "부담 갖지 말고 편하게 작성해도 괜찮아. 언제든 수정할 수 있으니까!\n\n" +
-                    "조금 뒤에 뭔가 선택지가 뜰 텐데 자동으로 넘기고 싶으면 두번째를 선택해주면 돼! 준비됐어?\n\n" +
+                    "💡 팁: Shift+Tab을 눌러서 Auto-Accept Mode를 활성화하면 변경 사항이 자동으로 승인돼!\n\n" +
+                    "준비됐어?\n\n" +
                     "---" +
                     "\nIMPORTANT: I must run the /profile command with SlashCommand tool after greeting the user because there is no profile.md file.\n"
                 }
