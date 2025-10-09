@@ -27,9 +27,15 @@ description: 성찰 저널 작성 - 실시간 메타인지 촉진
 - 생각/감정/경험 있는 그대로
 
 ## Reflections (What What What)
-- 🔍 What? (무슨 일): 경험/생각 그대로
-- 💡 So What? (의미): 있으면 쓰고 없으면 skip
-- ✨ Now What? (적용): 있으면 쓰고 없으면 skip
+- 🔍 What? (무슨 일) - 필수
+  - 📍 Context: 상황/배경
+  - 🎯 Action: 한 행동
+  - → Result: 결과
+- 💡 So What? (의미/교훈) - 선택
+  - 👍 좋았던 점
+  - 👎 아쉬운 점
+  - 💡 배운 점
+- ✨ Now What? (다음 행동) - 선택
 
 ## Long-term Insights
 - 대화 끝에 정리
@@ -58,10 +64,16 @@ description: 성찰 저널 작성 - 실시간 메타인지 촉진
 어떤 걸 남겨둘까? (번호로 말해줘, 여러 개도 괜찮고 없으면 "없어"라고 해줘)
 ```
 3. 사용자 선택에 따라 Reflections 섹션에 What What What 형식으로 작성
-   - Free Notes에서 What 추출
-   - So What, Now What이 없으면 자연스럽게 물어보기
-   - CLAUDE.md의 페르소나 철학 따르기 (로저스 + 소크라테스)
-   - "별로", "잘 모르겠어" → 즉시 존중하고 What만 작성
+   - What (필수):
+     - Free Notes에서 Context, Action, Result 추출
+     - CAR 구조로 명확하게 정리
+   - So What (선택):
+     - 좋았던 점, 아쉬운 점, 배운 점이 없으면 자연스럽게 물어보기
+     - CLAUDE.md의 페르소나 철학 따르기 (로저스 + 소크라테스)
+     - "별로", "잘 모르겠어" → 즉시 존중하고 What만 작성
+   - Now What (선택):
+     - 다음 행동이 있으면 자연스럽게 물어보기
+     - 없으면 skip
 4. Long-term Insights 제안:
 ```
 Long-term Insights로 남길 만한 게 있어:
