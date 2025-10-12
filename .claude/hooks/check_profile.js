@@ -1,21 +1,23 @@
 #!/usr/bin/env node
 /**
- * Profile checker hook for Claude Code.
- * Checks if 프로필.md exists and guides users to the appropriate next step.
- * Only runs on "startup" - not on resume/continue.
+ * 프로필 체크 Hook (Claude Code)
+ * 프로필.md 존재 여부를 확인하고 사용자를 적절한 단계로 안내
+ * "startup" 시에만 실행 (resume/continue 시에는 실행 안 함)
  */
 const fs = require('fs');
 const path = require('path');
+const { parseObsidianConfig, detectLocale } = require('./lib/obsidian-utils');
+const { ensureTodayJournal, findRecentJournals } = require('./lib/journal-utils');
 
 function main() {
     try {
-        // Read hook input from stdin
-        const stdinBuffer = fs.readFileSync(0, 'utf-8'); // fd 0 is stdin
+        // Hook input 읽기 (stdin)
+        const stdinBuffer = fs.readFileSync(0, 'utf-8');
         const hookInput = JSON.parse(stdinBuffer);
 
-        // Only run on "startup", skip on "resume", "clear", "compact"
+        // "startup" 시에만 실행, 나머지는 스킵
         if (hookInput.source !== 'startup') {
-            // Return empty output for non-startup sessions
+            // 비-startup 세션에서는 빈 출력 반환
             const emptyOutput = {
                 hookSpecificOutput: {
                     hookEventName: "SessionStart",
@@ -26,11 +28,11 @@ function main() {
             process.exit(0);
         }
 
-        // Get project directory from environment
+        // 프로젝트 디렉토리 가져오기
         const projectDir = process.env.CLAUDE_PROJECT_DIR || process.cwd();
         const profilePath = path.join(projectDir, '프로필.md');
 
-        // Check: 프로필.md 존재 여부
+        // 프로필.md 존재 여부 확인
         if (!fs.existsSync(profilePath)) {
             const output = {
                 hookSpecificOutput: {
@@ -57,35 +59,22 @@ function main() {
 
         // 프로필.md가 있는 경우: 자동 저널링 시작
 
-        // 최근 3일 저널 파일 경로 수집
-        const today = new Date();
-        const journalFiles = [];
+        // 1. Obsidian 설정 파싱
+        const obsidianConfig = parseObsidianConfig(projectDir);
 
-        for (let i = 0; i < 3; i++) {
-            const date = new Date(today);
-            date.setDate(date.getDate() - i);
+        // 2. Locale 감지 (ko/en)
+        const locale = detectLocale(projectDir, obsidianConfig.format);
 
-            const year = date.getFullYear();
-            const monthNumber = String(date.getMonth() + 1).padStart(2, '0');
-            const monthName = date.toLocaleString('ko-KR', { month: 'long' });
-            const day = String(date.getDate()).padStart(2, '0');
-            const dateStr = `${year}-${monthNumber}-${day}`;
+        // 3. 오늘 저널 파일 생성 (format 기반 경로로 생성)
+        ensureTodayJournal(obsidianConfig.template, obsidianConfig.format, locale);
 
-            const journalPath = path.join(projectDir, '저널', String(year), monthName, `${dateStr}.md`);
-
-            if (fs.existsSync(journalPath)) {
-                journalFiles.push({
-                    date: dateStr,
-                    absolutePath: journalPath,
-                    label: i === 0 ? '오늘' : i === 1 ? '어제' : '그저께'
-                });
-            }
-        }
+        // 4. 최근 저널 찾기 (최대 3개)
+        const recentJournals = findRecentJournals(obsidianConfig.journalFolder, 3);
 
         // 파일 경로 목록 구성
         const fileList = [
             `- 프로필: ${profilePath}`,
-            ...journalFiles.map(f =>
+            ...recentJournals.map(f =>
                 `- ${f.label} 저널 (${f.date}): ${f.absolutePath}`
             )
         ].join('\n');
@@ -109,7 +98,7 @@ function main() {
         const errorOutput = {
             hookSpecificOutput: {
                 hookEventName: "SessionStart",
-                additionalContext: `Profile 체크 중 오류가 발생했어: ${error.message}\n하지만 계속 진행할게!`
+                additionalContext: `프로필 체크 중 오류 발생: ${error.message}\n하지만 계속 진행할게!`
             }
         };
         console.log(JSON.stringify(errorOutput));
