@@ -153,21 +153,87 @@ function findRecentJournals(journalFolder, limit = 3) {
  * @returns {Array<Object>} 레이블이 추가된 결과 배열
  */
 function labelResults(results, today) {
+    // 로컬 날짜만 비교 (시간 무시)
+    const todayDateOnly = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+
     return results.map(item => {
-        const fileDate = new Date(item.date);
-        const diffDays = Math.floor((today - fileDate) / (1000 * 60 * 60 * 24));
+        const fileDate = new Date(item.date + 'T00:00:00'); // 로컬 시간대로 파싱
+        const fileDateOnly = new Date(fileDate.getFullYear(), fileDate.getMonth(), fileDate.getDate());
+        const diffDays = Math.floor((todayDateOnly - fileDateOnly) / (1000 * 60 * 60 * 24));
 
         let label;
         if (diffDays === 0) label = '오늘';
         else if (diffDays === 1) label = '어제';
         else if (diffDays === 2) label = '그저께';
-        else label = `${diffDays}일 전`;
+        else if (diffDays > 0) label = `${diffDays}일 전`;
+        else label = `${Math.abs(diffDays)}일 후`; // 미래 날짜 대응
 
         return { ...item, label };
     });
 }
 
+/**
+ * ISO 주차 번호 계산
+ * @private
+ * @param {Date} date - 날짜
+ * @returns {number} ISO 주차 번호
+ */
+function getWeekNumber(date) {
+    const d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+    const dayNum = d.getUTCDay() || 7;
+    d.setUTCDate(d.getUTCDate() + 4 - dayNum);
+    const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+    return Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
+}
+
+/**
+ * 주간/월간 계획 파일 찾기
+ * @param {string} journalFolder - 저널 루트 폴더 경로
+ * @param {string} locale - locale ('ko' 또는 'en')
+ * @returns {Array<Object>} {label, absolutePath} 객체 배열
+ */
+function findPlans(journalFolder, locale = 'ko') {
+    const results = [];
+    const today = new Date();
+    const year = today.getFullYear();
+    const monthNumber = String(today.getMonth() + 1).padStart(2, '0');
+    const monthName = today.toLocaleString(locale === 'ko' ? 'ko-KR' : 'en-US', { month: 'long' });
+    const weekNumber = getWeekNumber(today);
+
+    const monthFolder = locale === 'ko' ? `${monthNumber} ${monthName}` : monthName;
+
+    // 1. 주간 계획 찾기
+    const weeklyDir = path.join(journalFolder, String(year), monthFolder, 'Weekly');
+    const weeklyFileName = `${year} Week ${weekNumber}.md`;
+    const weeklyPlanPath = path.join(weeklyDir, weeklyFileName);
+
+    if (fs.existsSync(weeklyPlanPath)) {
+        results.push({
+            label: `주간 계획 (${year} Week ${weekNumber})`,
+            absolutePath: weeklyPlanPath
+        });
+    }
+
+    // 2. 월간 계획 찾기
+    const monthlyPlanPath = path.join(
+        journalFolder,
+        String(year),
+        monthFolder,
+        `${year} 계획 M${monthNumber}.md`
+    );
+
+    if (fs.existsSync(monthlyPlanPath)) {
+        results.push({
+            label: `월간 계획 (${year} M${monthNumber})`,
+            absolutePath: monthlyPlanPath
+        });
+    }
+
+    return results;
+}
+
 module.exports = {
     ensureTodayJournal,
-    findRecentJournals
+    findRecentJournals,
+    findPlans
 };

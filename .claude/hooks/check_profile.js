@@ -7,7 +7,7 @@
 const fs = require('fs');
 const path = require('path');
 const { parseObsidianConfig, detectLocale } = require('./lib/obsidian-utils');
-const { ensureTodayJournal, findRecentJournals } = require('./lib/journal-utils');
+const { ensureTodayJournal, findRecentJournals, findPlans } = require('./lib/journal-utils');
 
 function main() {
     try {
@@ -71,11 +71,17 @@ function main() {
         // 4. 최근 저널 찾기 (최대 3개)
         const recentJournals = findRecentJournals(obsidianConfig.journalFolder, 3);
 
+        // 5. 주간/월간 계획 찾기
+        const plans = findPlans(obsidianConfig.journalFolder, locale);
+
         // 파일 경로 목록 구성
         const fileList = [
             `- 프로필: ${profilePath}`,
             ...recentJournals.map(f =>
                 `- ${f.label} 저널 (${f.date}): ${f.absolutePath}`
+            ),
+            ...plans.map(p =>
+                `- ${p.label}: ${p.absolutePath}`
             )
         ].join('\n');
 
