@@ -15,9 +15,9 @@ function main() {
         const stdinBuffer = fs.readFileSync(0, 'utf-8');
         const hookInput = JSON.parse(stdinBuffer);
 
-        // "startup" 시에만 실행, 나머지는 스킵
-        if (hookInput.source !== 'startup') {
-            // 비-startup 세션에서는 빈 출력 반환
+        // "startup" 또는 "clear" 시에만 실행, 나머지는 스킵
+        if (hookInput.source !== 'startup' && hookInput.source !== 'clear') {
+            // 비-startup/clear 세션에서는 빈 출력 반환
             const emptyOutput = {
                 hookSpecificOutput: {
                     hookEventName: "SessionStart",
