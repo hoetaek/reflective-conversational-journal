@@ -4,11 +4,11 @@
 
 ### 1. Activity Diagram: 사용자 여정
 
-![user-activity-diagram](https://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/hoetaek/reflective-journal-companion/refs/heads/main/docs/user-activity-diagram.txt)
+![user-activity-diagram](https://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/hoetaek/reflective-conversational-journal/refs/heads/main/docs/user-activity-diagram.txt)
 
 ### 2. Class Diagram: 데이터 구조
 
-![class-diagram](https://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/hoetaek/reflective-journal-companion/refs/heads/main/docs/class-diagram.txt)
+![class-diagram](https://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/hoetaek/reflective-conversational-journal/refs/heads/main/docs/class-diagram.txt)
 
 **파일 구조:**
 - `프로필.md` - 사용자 맥락 정보
@@ -17,7 +17,7 @@
 
 ### 3. Activity Diagram: 저널링 프로세스
 
-![journal-activity-diagram](https://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/hoetaek/reflective-journal-companion/refs/heads/main/docs/journal-activity-diagram.txt)
+![journal-activity-diagram](https://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/hoetaek/reflective-conversational-journal/refs/heads/main/docs/journal-activity-diagram.txt)
 
 ## Design Philosophy
 

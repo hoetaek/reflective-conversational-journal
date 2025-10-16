@@ -1,4 +1,4 @@
-# 🌟 Reflective Journal Companion
+# 🌟 Reflective Conversational Journal
 
 ## About The Project
 
@@ -11,7 +11,7 @@
 - 혼자 생각하다 보니 같은 패턴에서 벗어나지 못하는 느낌
 - 성장하고 싶지만 어떻게 해야 할지 구체적 방법을 모름
 
-**Reflective Journal Companion**은 이런 고민에서 시작된 AI 성찰 저널링 시스템입니다.
+**Reflective Conversational Journal**은 이런 고민에서 시작된 AI 성찰 저널링 시스템입니다.
 
 단순한 일기 앱이 아닌, **로저스의 공감과 소크라테스의 질문**으로 당신 안에 있는 답을 스스로 발견하도록 돕는 AI 성찰 동반자입니다.
 
@@ -25,7 +25,7 @@
 
 또한 기존 저널링의 또 다른 문제는 **작성 자체의 부담**이었습니다. "뭘 써야 하지?" "어떻게 정리하지?"라는 막막함이 저널링을 멀어지게 만들곤 했습니다.
 
-Reflective Journal Companion은 **자연스러운 대화와 구조화된 템플릿**을 통해 이런 문제들을 해결하고자 했습니다. 대화만 하면 AI가 What-So What-Now What 구조로 정리해주어 **작성 부담을 줄이면서도**, 필요하면 자유 노트 섹션으로 **유연성**까지 제공합니다.
+Reflective Conversational Journal은 **자연스러운 대화와 구조화된 템플릿**을 통해 이런 문제들을 해결하고자 했습니다. 대화만 하면 AI가 What-So What-Now What 구조로 정리해주어 **작성 부담을 줄이면서도**, 필요하면 자유 노트 섹션으로 **유연성**까지 제공합니다.
 
 ### 어떻게 작동하나요?
 
@@ -79,7 +79,7 @@ Reflective Journal Companion은 **자연스러운 대화와 구조화된 템플�
 
 ### Key Distinction
 
-Reflective Journal Companion은 **로컬 우선, 공감 기반 성찰 대화 AI 저널링**입니다. 클라우드 서비스가 아닌 개인 컴퓨터에서 실행되며, 로저스의 공감적 이해와 소크라테스의 날카로운 질문으로 스스로 깨달음을 찾도록 돕습니다.
+Reflective Conversational Journal은 **로컬 우선, 공감 기반 성찰 대화 AI 저널링**입니다. 클라우드 서비스가 아닌 개인 컴퓨터에서 실행되며, 로저스의 공감적 이해와 소크라테스의 날카로운 질문으로 스스로 깨달음을 찾도록 돕습니다.
 
 **핵심 특징:**
 - 🧠 **개인 맥락 기반 맞춤 질문** - AI가 모든 여정을 기억하며 연결
@@ -150,8 +150,8 @@ Reflective Journal Companion은 **로컬 우선, 공감 기반 성찰 대화 AI 
 1. **프로젝트 클론**
 
    ```bash
-   git clone git@github.com:hoetaek/reflective-journal-companion.git
-   cd reflective-journal-companion
+   git clone git@github.com:hoetaek/reflective-conversational-journal.git
+   cd reflective-conversational-journal
    ```
 
 2. **Obsidian vault 열기**
@@ -278,7 +278,7 @@ Claude Code의 유연한 명령어 시스템을 활용하여 개인의 필요에
 ## Project Structure
 
 ```
-reflective-journal-companion/
+reflective-conversational-journal/
 ├── .claude/commands/           # AI 명령어 정의
 │   ├── journal.md             # 일일 저널링 명령어
 │   ├── profile.md             # 프로필 설정 명령어
