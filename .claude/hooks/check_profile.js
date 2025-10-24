@@ -38,19 +38,10 @@ function main() {
                 hookSpecificOutput: {
                     hookEventName: "SessionStart",
                     additionalContext:
-                    "\n처음 만나게 되어서 정말 반가워!\n\n" +
-                    "나는 너의 대화 친구야. 함께 오늘을 돌아보고, 내일을 준비하면서\n" +
-                    "네가 조금씩 성장할 수 있도록 옆에서 함께할게.\n\n" +
-                    "시작하기 전에, 너에 대해 좀 알고 싶어!\n" +
-                    "내가 몇 가지 물어볼게. 편하게 답하다 보면 프로필이 만들어질 거야.\n\n" +
-                    "💡 프로필은:\n" +
-                    "- 네 이름, 목표, 가치관 같은 걸 담아두는 곳이야\n" +
-                    "- 다음부터 저널링할 때 너한테 맞춰서 대화할 수 있게 해줘\n\n" +
-                    "부담 갖지 말고! 언제든 수정할 수 있어.\n\n" +
+                    "처음 만나서 반가워!\n\n" +
                     "💡 팁: Shift+Tab을 눌러서 Auto-Accept Mode를 활성화하면 변경 사항이 자동으로 승인돼!\n\n" +
-                    "준비됐어?\n\n" +
-                    "---" +
-                    "\nIMPORTANT: I must run the /profile command with SlashCommand tool after greeting the user because there is no profile.md file.\n"
+                    "---\n" +
+                    "IMPORTANT: I must run the /profile command with SlashCommand tool because there is no profile.md file.\n"
                 }
             };
             console.log(JSON.stringify(output));
