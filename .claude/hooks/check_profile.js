@@ -41,7 +41,7 @@ function main() {
                     "\n처음 만나서 반가워!\n\n" +
                     "💡 팁: Shift+Tab을 눌러서 Auto-Accept Mode를 활성화하면 변경 사항이 자동으로 승인돼!\n\n" +
                     "---\n" +
-                    "IMPORTANT: I must run the /profile command with SlashCommand tool because there is no profile.md file.\n"
+                    "IMPORTANT: I must run the /profile command with SlashCommand tool because there is no 프로필.md file.\n"
                 }
             };
             console.log(JSON.stringify(output));
