@@ -1,0 +1,25 @@
+@startuml
+skinparam defaultTextAlignment center
+skinparam dpi 300
+skinparam padding 2
+
+start
+
+:시스템 시작;
+
+if (사용자 프로필 존재?) then (아니오)
+  :환영 메시지 표시;
+  :대화를 통한 프로필 생성;
+  note right
+    이름, 목표, 가치관 등
+    자연스러운 대화로 수집
+  end note
+else (예)
+  :기존 프로필 및 과거 저널 로드;
+endif
+
+:저널 작성 시작;
+
+stop
+
+@enduml

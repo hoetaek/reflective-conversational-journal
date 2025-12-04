@@ -1,0 +1,44 @@
+skinparam defaultTextAlignment center
+skinparam dpi 300
+skinparam padding 2
+
+start
+
+:맥락 정보 제공;
+note right
+  프로필, 최근 저널,
+  현재 시간 정보
+end note
+
+:AI 페르소나가 대화 시작;
+
+repeat
+  :사용자 응답;
+  
+  if (의미 있는 내용?) then (예)
+    :실시간 기록;
+  endif
+  
+  :AI 공감 및 탐색;
+  
+repeat while (대화 계속?) is (예)
+->아니오;
+
+:성찰 항목 제시;
+
+if (성찰 진행?) then (예)
+  :구조화된 성찰 작성;
+  note right
+    What - So What - Now What
+  end note
+endif
+
+if (장기 인사이트?) then (예)
+  :패턴 및 원칙 기록;
+endif
+
+:저널 완료;
+
+stop
+
+@enduml
