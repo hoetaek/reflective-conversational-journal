@@ -1,43 +1,36 @@
+@startuml journal-activity-diagram
+
 skinparam defaultTextAlignment center
 skinparam dpi 300
 skinparam padding 2
+
+title 저널 세션 흐름
 
 start
 
 :맥락 정보 제공;
 note right
-  프로필, 최근 저널,
-  현재 시간 정보
+  프로필 + 최근 저널
 end note
 
-:AI 페르소나가 대화 시작;
+:대화 세션 진행;
+note right
+  사용자-AI 반복 대화
+end note
 
-repeat
-  :사용자 응답;
-  
-  if (의미 있는 내용?) then (예)
-    :실시간 기록;
-  endif
-  
-  :AI 공감 및 탐색;
-  
-repeat while (대화 계속?) is (예)
-->아니오;
-
-:성찰 항목 제시;
-
-if (성찰 진행?) then (예)
-  :구조화된 성찰 작성;
+fork
+  :성찰 구조화;
   note right
-    What - So What - Now What
+    What-So What-Now What
   end note
-endif
+fork again
+  :패턴 추출;
+  note right
+    장기 통찰
+  end note
+end fork
 
-if (장기 인사이트?) then (예)
-  :패턴 및 원칙 기록;
-endif
-
-:저널 완료;
+:저널 저장;
 
 stop
 
