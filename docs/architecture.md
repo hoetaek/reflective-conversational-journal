@@ -2,22 +2,18 @@
 
 ## How It Works
 
-### 1. Activity Diagram: 사용자 여정
 
-![user-activity-diagram](https://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/hoetaek/reflective-conversational-journal/refs/heads/main/docs/user-activity-diagram.txt)
+### 1. Component Diagram: 구성 요소
 
-### 2. Class Diagram: 데이터 구조
+![component-diagram](https://www.plantuml.com/plantuml/png/VL9DQnDH5Ds_Nt4P5ogbfIQAPHQbcYOG2L8IivlDwypDE6JoNdZpeXK9T36wC0XLMYYIb1ICRXI2QJ2Bzi-upBpy1vcFV5VVxCuzzvmpzzuzJr8X6pMNU5M7rQcWDR2mGXkkV857yedhsAo6J8A9JA9OPDKTI6zlBo1rQbaEio555a21fgJCTX7U4W20fzIise8tc9NXBXTm9xSJVd6D2mj5WgUZ5-75c2uO2dX4ceiXgAI7rFkdU7Odzp1xYtWg-tW_dI9DGboiI90SX6E_b60vOLw7CqAeARa0hUoXq81wqF1G45AdPfNQ25enymnARpo9DIqnd_-fLiuRBCDhTSwGoQYxd8yugyGCPnAFfC4E17_bM8bLWYQwuNFf8RgWJKxzuB8zEVDX0zImFVvz3MdLkJRO1gXMUzptGNNFWi5Lh5A8sfkt6X-Wy3YZgp4JUDsvo6qKdi5At1HKecUm_TTeLkEc_naLqUGYF8jLgrbXtImd4E4vZsp-lFyCHQouyLeI8C-yS5rUBBHcFxiAhIIve3OQx5vwFF3LQ7W_QadWTUV20ntK-TVWmpcexd7WdnYiaDANPrr8wp1RH2mtJT0av2u47_kgSpNn-p3fd0JVV19U3cnkxa8v3pgeYtT1jqVAUTZQsfqDN0VLzOFM3pBT_N8n-DuBEZUWkktnO4YcyKFEbA-3wjoCHtqoRGgByndhC1xrWyiEg2-dwjTFCg-4lAbWcE9ONVIM7ABKaqzjrMeJieVCQjJSlm00 "component-diagram")
 
-![class-diagram](https://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/hoetaek/reflective-conversational-journal/refs/heads/main/docs/class-diagram.txt)
+### 2. Activity Diagram: 온보딩
 
-**파일 구조:**
-- `프로필.md` - 사용자 맥락 정보
-- `저널/YYYY/M월/YYYY-MM-DD.md` - 일일 저널
-- `저널/YYYY/M월/W[주번호] 성찰.md` - 주간 회고
+![onboarding-activity-diagram](https://www.plantuml.com/plantuml/png/JP31IiD054NtynLlsK8NHNVjmleF_a0mqpQOJ4Co1PTHevHMiA4jfcKQ3LHB9Oi48oZqYp9l_a7I2cRtkEzoxkLsNAuvV6YPnBqocAqvcWKwxMf3ar_GQtvk6ZrcKSRXaZ9EdQhBDk2qsQmejgRh1kl12I47AY4jd0WSRzIzWFAAWZOXHXTgU9lWQeVH5DJSbx5G2nympZ5Apkh0-vH13HU-d8mmtDG9G4ijGmnlGExc9MVhWGe4JaIx_Cb7JotdycqFwk5BBKILURT6FojTRC0fE4Qlpma00Avp-UutG7xiL20QKAGU_eH5xe6SPKT7DCNd5CSR-PBWAeU_b5W0ZaBS1WI0Clt09THqATGm71sw5jyfndcbXKoVeFZS5raA-Ef9Vmeo5d8cseGotUYMCnrbZ0Bqi_-fN3wm2UbGfWyjynS0 "onboarding-activity-diagram")
 
-### 3. Activity Diagram: 저널링 프로세스
+### 3. Activity Diagram: 저널
 
-![journal-activity-diagram](https://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/hoetaek/reflective-conversational-journal/refs/heads/main/docs/journal-activity-diagram.txt)
+![journal-activity-diagram](https://www.plantuml.com/plantuml/png/PPBFQjj04CRlynHpj261aDuaQ9fZBhsqqBEerhQeBGjP8JqQPmbEvBOos4LE9M7JcCJ5fGgMg0lj2sbdtw6ifVJlRTYP_RxVVBkzLvRj6AxHGPCrZDEszvozzexRLjFkCDl3bypsc0kztrEEXOyE3luuSGpJjEmc7WBqFCFr03HnknJn3wJvL6mof7bKR78TxAx7qBMQBGyGvOIBHIIdV0yfZugltv7cVS63FTKBEILh93ygKbwf0BDDL0e0sl49ohUXM6PqCHA3i4ZxA4PzEPkeAvICTG2NESnGFXeDrdIzeYH0YiV2ptL014IhWJMAG_5bYvGCnTK4nI2ZwzLH7RqMix56uR0EY4h1lwbGYcqg5h5IOBPfDKebXLDiyY8DKAJlK9u7T7wvSoaXyAnbjHdMAiHYm-dYpL4ThLvbil-OfbpuGmflT02D-3sbAShfP_5ffS8ZFz81Ti1bYswvV7_vBwbMv6jQf78s4K643wF9cFYzelahVSGNBSF3VNpMVQYUTizsPRbS6NMvPMcTB8jjYXHlLQ1n9g-s_m78qPtasIu5-X3Gjzclm2eXhNnZf1aN7qUw-Z1T1-09iytJJlid "journal-activity-diagram")
 
 ## Design Philosophy
 
@@ -29,30 +25,3 @@
 - **자연스러운 대화**: 체크리스트식 질문이 아닌 친구 같은 대화
 - **철학 기반 AI 페르소나**: 로저스의 공감 + 소크라테스의 질문
 - **유연한 구조**: "모든 칸 채우기"가 아닌 "의미 있는 것만"
-
-### 🤖 AI 페르소나: 함께하는 대화 친구
-
-**"로저스의 따뜻함과 소크라테스의 날카로움을 가진 친구"**
-
-```mermaid
-graph LR
-    subgraph Core["🎯 CORE: 친구 대화"]
-        C["질문보다 반응이 먼저<br/>공감 → 연결 → 정리"]
-    end
-
-    Core ~~~ Rogers
-
-    subgraph Rogers["💝 로저스"]
-        R["따뜻하고 안전한 공간<br/>무조건적 존중 + 공감"]
-    end
-
-    Rogers ~~~ Socrates
-
-    subgraph Socrates["💡 소크라테스"]
-        S["진짜 궁금할 때만<br/>부드럽게 질문"]
-    end
-
-    style Core fill:#fff9c4,stroke:#f57f17,stroke-width:3px
-    style Rogers fill:#ffe0b2,stroke:#ef6c00,stroke-width:2px
-    style Socrates fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
-```
