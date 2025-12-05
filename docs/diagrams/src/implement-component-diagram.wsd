@@ -21,25 +21,25 @@ left to right direction
 
 actor "사용자" as user
 
-rectangle "클라이언트\n어플리케이션" as happy
+rectangle "클라이언트\n어플리케이션" as client
 
 node "중계 서버\n(E2E 암호화)" as relay
 
 package "로컬 환경" {
-    rectangle "Claude Code\n에이전트" as claude
-    database "마크다운\n저널 저장소" as obsidian
+    rectangle "AI\n에이전트" as agent
+    database "마크다운\n저널 저장소" as editor
 }
 
 ' 대화 흐름 (1-5)
-user --> happy : ① 대화 입력
-happy --> relay : ② 암호화 전송
-relay --> claude : ③ 중계
-claude --> relay : ④ 응답 생성
-relay --> happy : ⑤ 응답 전달
+user --> client : ① 대화 입력
+client --> relay : ② 암호화 전송
+relay --> agent : ③ 중계
+agent --> relay : ④ 응답 생성
+relay --> client : ⑤ 응답 전달
 
 ' 저널 기록 (a-c)
-obsidian --> claude : ⓐ 맥락 읽기
-claude --> obsidian : ⓑ 저널 저장
-obsidian --> user : ⓒ 저널 표시
+editor --> agent : ⓐ 맥락 읽기
+agent --> editor : ⓑ 저널 저장
+editor --> user : ⓒ 저널 표시
 
 @enduml
