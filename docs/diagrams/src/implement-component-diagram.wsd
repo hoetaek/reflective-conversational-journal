@@ -1,0 +1,45 @@
+@startuml
+skinparam defaultTextAlignment center
+skinparam dpi 300
+skinparam padding 2
+
+skinparam rectangle {
+    BackgroundColor #F8F8F8
+    BorderColor #333333
+    RoundCorner 5
+}
+skinparam node {
+    BackgroundColor #FFF3E0
+    BorderColor #E65100
+}
+skinparam database {
+    BackgroundColor #E8F4E8
+    BorderColor #2E7D32
+}
+
+left to right direction
+
+actor "사용자" as user
+
+rectangle "클라이언트\n어플리케이션" as happy
+
+node "중계 서버\n(E2E 암호화)" as relay
+
+package "로컬 환경" {
+    rectangle "Claude Code\n에이전트" as claude
+    database "마크다운\n저널 저장소" as obsidian
+}
+
+' 대화 흐름 (1-5)
+user --> happy : ① 대화 입력
+happy --> relay : ② 암호화 전송
+relay --> claude : ③ 중계
+claude --> relay : ④ 응답 생성
+relay --> happy : ⑤ 응답 전달
+
+' 저널 기록 (a-c)
+obsidian --> claude : ⓐ 맥락 읽기
+claude --> obsidian : ⓑ 저널 저장
+obsidian --> user : ⓒ 저널 표시
+
+@enduml
