@@ -25,11 +25,11 @@ package "UI Layer" {
 package "Application Layer" {
     [Workflow] as Workflow
     [Persona] as Persona
+    [Reflection] as Reflection
 }
 
 package "Service Layer" {
     [Context] as Context
-    [Reflection] as Reflection
 }
 
 package "Data Layer" {

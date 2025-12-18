@@ -1,6 +1,8 @@
 @startuml sequence-diagram
 skinparam defaultTextAlignment center
 skinparam dpi 300
+skinparam ParticipantPadding 40
+skinparam BoxPadding 20
 
 title Journaling Process - Example Flow (journal.md)
 
@@ -9,10 +11,11 @@ participant "UI" as UI
 box "Application Layer" #F0F0F0
     participant "Workflow" as Workflow
     participant "Persona" as Persona
+    participant "Reflection" as Reflection
 end box
+
 box "Service Layer" #E8E8E8
     participant "Context" as Context
-    participant "Reflection" as Reflection
 end box
 database "Storage" as Storage
 
