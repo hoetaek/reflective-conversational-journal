@@ -1,4 +1,4 @@
-@startuml
+@startuml architecture-diagram
 skinparam defaultTextAlignment center
 skinparam dpi 300
 skinparam padding 2
@@ -19,17 +19,17 @@ skinparam component {
 left to right direction
 
 package "UI Layer" {
-    [UI Component] as UI
+    [UI] as UI
 }
 
 package "Application Layer" {
-    [Workflow Component] as Workflow
-    [Persona Component] as Persona
+    [Workflow] as Workflow
+    [Persona] as Persona
 }
 
 package "Service Layer" {
-    [Context Provider] as Context
-    [Recording Component] as Recording
+    [Context] as Context
+    [Reflection] as Reflection
 }
 
 package "Data Layer" {

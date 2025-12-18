@@ -12,7 +12,7 @@ box "Application Layer" #F0F0F0
 end box
 box "Service Layer" #E8E8E8
     participant "Context" as Context
-    participant "Recording" as Recording
+    participant "Reflection" as Reflection
 end box
 database "Storage" as Storage
 
@@ -31,20 +31,20 @@ Context --> Persona : Provide context
 Persona --> Workflow : Response
 
 == Free Notes Phase ==
-Workflow -> Recording : Update Free Notes
-Recording -> Storage : Write (real-time)
-Storage --> Recording : Confirm
+Workflow -> Reflection : Update Free Notes
+Reflection -> Storage : Write (real-time)
+Storage --> Reflection : Confirm
 
 == Reflections Phase ==
-Workflow -> Recording : Write Reflections
-Recording -> Storage : Write
-Storage --> Recording : Confirm
+Workflow -> Reflection : Write Reflections
+Reflection -> Storage : Write
+Storage --> Reflection : Confirm
 
 == Long-term Insights Phase ==
 opt If significant insights exist
-    Workflow -> Recording : Write Long-term Insights
-    Recording -> Storage : Write
-    Storage --> Recording : Confirm
+    Workflow -> Reflection : Write Long-term Insights
+    Reflection -> Storage : Write
+    Storage --> Reflection : Confirm
 end
 
 == Completion ==
