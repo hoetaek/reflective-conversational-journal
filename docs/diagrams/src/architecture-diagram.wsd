@@ -1,0 +1,46 @@
+@startuml
+skinparam defaultTextAlignment center
+skinparam dpi 300
+skinparam padding 2
+
+skinparam componentStyle rectangle
+
+skinparam package {
+    BackgroundColor #F0F0F0
+    BorderColor #666666
+    FontSize 14
+    FontStyle bold
+}
+skinparam component {
+    BackgroundColor #F8F8F8
+    BorderColor #333333
+}
+
+left to right direction
+
+package "UI Layer" {
+    [UI Component] as UI
+}
+
+package "Application Layer" {
+    [Workflow Component] as Workflow
+    [Persona Component] as Persona
+}
+
+package "Service Layer" {
+    [Context Provider] as Context
+    [Recording Component] as Recording
+}
+
+package "Data Layer" {
+    [Storage] as Storage
+}
+
+' Layer Dependencies (Strict Layered Architecture)
+' Rule: Upper layers depend on lower layers only
+"UI Layer" ..> "Application Layer"
+"Application Layer" ..> "Service Layer"
+"Service Layer" ..> "Data Layer"
+' Note: Application Layer cannot access Data Layer directly
+
+@enduml

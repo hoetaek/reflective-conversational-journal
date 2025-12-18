@@ -1,0 +1,54 @@
+@startuml sequence-diagram
+skinparam defaultTextAlignment center
+skinparam dpi 300
+
+title Journaling Process - Example Flow (journal.md)
+
+actor User
+participant "UI" as UI
+box "Application Layer" #F0F0F0
+    participant "Workflow" as Workflow
+    participant "Persona" as Persona
+end box
+box "Service Layer" #E8E8E8
+    participant "Context" as Context
+    participant "Recording" as Recording
+end box
+database "Storage" as Storage
+
+== Initialization ==
+User -> UI : Start session
+UI -> Workflow : Request
+Workflow -> Context : Load context
+Context -> Storage : Read profile & journals
+Storage --> Context : Return data
+Context --> Workflow : Provide context
+
+== Conversation ==
+Workflow -> Persona : Process conversation
+Persona -> Context : Request context
+Context --> Persona : Provide context
+Persona --> Workflow : Response
+
+== Free Notes Phase ==
+Workflow -> Recording : Update Free Notes
+Recording -> Storage : Write (real-time)
+Storage --> Recording : Confirm
+
+== Reflections Phase ==
+Workflow -> Recording : Write Reflections
+Recording -> Storage : Write
+Storage --> Recording : Confirm
+
+== Long-term Insights Phase ==
+opt If significant insights exist
+    Workflow -> Recording : Write Long-term Insights
+    Recording -> Storage : Write
+    Storage --> Recording : Confirm
+end
+
+== Completion ==
+Workflow --> UI : Complete
+UI --> User : Show result
+
+@enduml
