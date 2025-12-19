@@ -3,6 +3,7 @@ skinparam defaultTextAlignment center
 skinparam dpi 300
 skinparam ParticipantPadding 40
 skinparam BoxPadding 20
+hide footbox
 
 title Journaling Process - Example Flow (journal.md)
 
@@ -35,19 +36,25 @@ Persona --> Workflow : Response
 
 == Free Notes Phase ==
 Workflow -> Reflection : Update Free Notes
-Reflection -> Storage : Write (real-time)
-Storage --> Reflection : Confirm
+Reflection -> Context : Write (real-time)
+Context -> Storage : Write
+Storage --> Context : Confirm
+Context --> Reflection : Confirm
 
 == Reflections Phase ==
 Workflow -> Reflection : Write Reflections
-Reflection -> Storage : Write
-Storage --> Reflection : Confirm
+Reflection -> Context : Write
+Context -> Storage : Write
+Storage --> Context : Confirm
+Context --> Reflection : Confirm
 
 == Long-term Insights Phase ==
 opt If significant insights exist
     Workflow -> Reflection : Write Long-term Insights
-    Reflection -> Storage : Write
-    Storage --> Reflection : Confirm
+    Reflection -> Context : Write
+    Context -> Storage : Write
+    Storage --> Context : Confirm
+    Context --> Reflection : Confirm
 end
 
 == Completion ==
