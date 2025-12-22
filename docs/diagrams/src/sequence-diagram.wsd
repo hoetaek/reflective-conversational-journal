@@ -5,8 +5,6 @@ skinparam ParticipantPadding 40
 skinparam BoxPadding 20
 hide footbox
 
-title Journaling Process - Example Flow (journal.md)
-
 actor User
 participant "UI" as UI
 box "Application Layer" #F0F0F0
