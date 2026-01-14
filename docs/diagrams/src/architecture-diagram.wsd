@@ -5,42 +5,46 @@ skinparam padding 2
 
 skinparam componentStyle rectangle
 
-skinparam package {
-    BackgroundColor #F0F0F0
-    BorderColor #666666
+skinparam rectangle {
     FontSize 14
     FontStyle bold
 }
+
 skinparam component {
-    BackgroundColor #F8F8F8
+    BackgroundColor #FFFFFF
     BorderColor #333333
 }
 
-left to right direction
+top to bottom direction
 
-package "UI Layer" {
-    [UI] as UI
+' === Layers (Component Diagram Style) ===
+
+rectangle "UI Layer" {
+    component "User Interface" as UI
 }
 
-package "Application Layer" {
-    [Workflow] as Workflow
-    [Persona] as Persona
-    [Reflection] as Reflection
+rectangle "Application Layer" {
+    component "Workflow" as Workflow
+    component "Persona" as Persona
+    component "Reflection" as Reflection
 }
 
-package "Service Layer" {
-    [Context] as Context
+rectangle "Service Layer" {
+    component "Context Provider" as Context
 }
 
-package "Data Layer" {
-    [Storage] as Storage
+rectangle "Data Layer" {
+    database "Storage" as DB
 }
 
-' Layer Dependencies (Strict Layered Architecture)
-' Rule: Upper layers depend on lower layers only
-"UI Layer" ..> "Application Layer"
-"Application Layer" ..> "Service Layer"
-"Service Layer" ..> "Data Layer"
-' Note: Application Layer cannot access Data Layer directly
+' === Dependencies ===
+
+UI ..> Workflow
+Workflow ..> Persona
+Workflow ..> Reflection
+Workflow ..> Context
+Persona ..> Context
+Reflection ..> Context
+Context ..> DB
 
 @enduml
