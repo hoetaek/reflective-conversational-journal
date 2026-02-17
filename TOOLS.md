@@ -11,8 +11,7 @@
 |------|------|------|
 | journal | `.claude/skills/journal/` | 대화형 저널링 (세션 시작 시 자동) |
 | reflect | `.claude/skills/reflect/` | 프레임워크 기반 성찰 (4종) |
-| weekly | `.claude/skills/weekly/` | 주간 회고 생성 |
-| profile | `.claude/skills/profile/` | 프로필.md 생성/수정 |
+| weekly | `.claude/skills/weekly/` | 주간 회고 생성 (+ USER.md 업데이트 제안) |
 
 ## 성찰 프레임워크
 
@@ -27,13 +26,14 @@
 
 | 훅 | 실행 시점 | 역할 |
 |----|----------|------|
-| `load-profile-journals.js` | SessionStart | 프로필, 최근 저널, 계획을 XML로 로드 |
+| `load-profile-journals.js` | SessionStart | USER.md, 최근 저널, 계획을 XML로 로드 (+ BOOTSTRAP.md 감지) |
+| `load-memory.js` | SessionStart | AI 메모리 로그 로드 |
 | `load-current-time.js` | UserPromptSubmit | 현재 시각 주입 |
 
 ## 환경 설정
 
 - **Obsidian 볼트**: 훅에서 자동 감지 (`obsidian-utils.js`)
 - **저널 경로**: Obsidian daily-notes 설정 기반
-- **프로필 경로**: Obsidian 볼트 루트의 `프로필.md`
+- **USER.md 경로**: 프로젝트 루트의 `USER.md`
 
 ---

@@ -16,7 +16,7 @@
 | `IDENTITY.md` | AI 외적 표현 (분위기/대화 스타일) | AI |
 | `MEMORY.md` | AI 장기 기억 (Curated 결정, 교훈) | AI |
 | `memory/YYYY-MM-DD.md` | AI 일일 세션 로그 | AI |
-| `USER.md` | 사용자 정보 | 사용자 |
+| `USER.md` | 사용자 정보 | AI (부트스트랩/위클리에서 관리) |
 | `저널` | 사용자 성찰/감정/경험 | 사용자 (AI가 도움) |
 | `TOOLS.md` | 도구/스킬 설정 참조 | AI |
 | `HEARTBEAT.md` | 주기적 점검 작업 목록 | AI |

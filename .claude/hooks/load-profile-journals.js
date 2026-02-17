@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
- * 프로필 체크 Hook (Claude Code)
- * 프로필.md 존재 여부를 확인하고 사용자를 적절한 단계로 안내
+ * 세션 시작 Hook (Claude Code)
+ * BOOTSTRAP.md / USER.md 존재 여부를 확인하고 적절한 흐름으로 안내
  * "startup" 또는 "clear" 시에만 실행
  */
 const fs = require('fs');
@@ -11,6 +11,7 @@ const {
     errorOutput,
     initializeProjectEnvironment,
     profileExists,
+    bootstrapExists,
     outputContext
 } = require('./lib/hook-common');
 const { ensureTodayJournal, findRecentJournals, findPlans } = require('./lib/journal-utils');
@@ -25,26 +26,27 @@ function main() {
         }
 
         // 2. 프로젝트 환경 초기화
-        const { projectDir, profilePath, obsidianConfig, locale } = initializeProjectEnvironment();
+        const { projectDir, profilePath, bootstrapPath, obsidianConfig, locale } = initializeProjectEnvironment();
 
-        // 3. 프로필 존재 여부 확인
+        // 3. BOOTSTRAP.md 존재 여부 확인 (첫 만남)
+        if (bootstrapExists(bootstrapPath)) {
+            const bootstrapContent = fs.readFileSync(bootstrapPath, 'utf-8');
+            const bootstrapMessage =
+                "IMPORTANT: BOOTSTRAP.md가 존재합니다. 이것은 첫 만남입니다.\n\n" +
+                "BOOTSTRAP.md의 내용을 읽고, Phase 1(아이덴티티 발견)부터 시작하세요.\n" +
+                "완료 후 Phase 2(USER.md 생성), Phase 3(마무리 — BOOTSTRAP.md 삭제 + 첫 저널)까지 진행하세요.\n\n" +
+                "<bootstrap>\n" + bootstrapContent + "\n</bootstrap>\n\n" +
+                "IMPORTANT: BOOTSTRAP.md의 Phase 1 시작 메시지로 사용자에게 인사하세요. /profile 스킬은 Phase 2에서 사용합니다.\n";
+
+            return outputContext(bootstrapMessage);
+        }
+
+        // 4. USER.md 존재 여부 확인
         if (!profileExists(profilePath)) {
             const welcomeMessage =
-                "\nIMPORTANT: There is no 프로필.md file. I must greet the new user warmly with this message:\n\n" +
-                "---\n\n" +
-                "처음 만나게 되어서 정말 반가워!\n\n" +
-                "나는 너의 성찰 동반자야. 함께 오늘을 돌아보고, 내일을 준비하면서\n" +
-                "네가 조금씩 성장할 수 있도록 옆에서 함께할게.\n\n" +
-                "시작하기 전에, 먼저 프로필을 함께 만들어보자!\n\n" +
-                "💡 프로필에 담길 내용:\n" +
-                "- 네 이름\n" +
-                "- 목표\n" +
-                "- 가치관 등\n\n" +
-                "부담 갖지 말고 편하게 작성해도 괜찮아. 언제든 수정할 수 있으니까!\n\n" +
-                "💡 팁: Shift+Tab을 눌러서 Auto-Accept Mode를 활성화하면 변경 사항이 자동으로 승인돼!\n\n" +
-                "준비됐어?\n\n" +
-                "---\n\n" +
-                "After showing this greeting message to the user, I must run the /profile command with Skill tool to help them create their profile.\n";
+                "\nIMPORTANT: USER.md 파일이 없거나 비어있습니다.\n\n" +
+                "사용자에게 따뜻하게 인사하고, /profile 스킬을 실행하여 USER.md를 생성하세요.\n\n" +
+                "After greeting the user, run the /profile command with Skill tool to help them create their USER.md.\n";
 
             return outputContext(welcomeMessage);
         }
@@ -64,7 +66,7 @@ function main() {
 
         let contextContent = `<user_context current_date="${currentDate}" day_of_week="${dayOfWeek}" current_time="${currentTime}">\n`;
 
-        // 5-1. 프로필
+        // 5-1. USER.md
         contextContent += "<profile>\n";
         contextContent += `<file_path>${profilePath}</file_path>\n`;
         contextContent += "<content>\n";
@@ -114,14 +116,14 @@ function main() {
 
         // 6. 출력
         const message =
-            "IMPORTANT: I have received the user's profile, recent journals (including today, yesterday, and day-before-yesterday's reflections), and plans in structured XML format below.\n\n" +
+            "IMPORTANT: I have received the user's USER.md, recent journals (including today, yesterday, and day-before-yesterday's reflections), and plans in structured XML format below.\n\n" +
             contextContent + "\n\n" +
             "IMPORTANT: You MUST immediately execute the /journal command using the Skill tool before responding to the user.\n";
 
         return outputContext(message);
 
     } catch (error) {
-        return errorOutput(error, '프로필 체크');
+        return errorOutput(error, '세션 시작');
     }
 }
 

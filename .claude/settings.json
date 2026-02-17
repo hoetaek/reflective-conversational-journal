@@ -32,7 +32,6 @@
   "permissions": {
     "allow": [
       "Skill(journal)",
-      "Skill(profile)",
       "Skill(weekly)",
       "Skill(reflect)"
     ],

@@ -56,7 +56,8 @@ function errorOutput(error, hookName = 'Hook') {
  */
 function initializeProjectEnvironment() {
     const projectDir = process.env.CLAUDE_PROJECT_DIR || process.cwd();
-    const profilePath = path.join(projectDir, '프로필.md');
+    const profilePath = path.join(projectDir, 'USER.md');
+    const bootstrapPath = path.join(projectDir, 'BOOTSTRAP.md');
 
     const obsidianConfig = parseObsidianConfig(projectDir);
     const locale = detectLocale(projectDir, obsidianConfig.format);
@@ -64,18 +65,30 @@ function initializeProjectEnvironment() {
     return {
         projectDir,
         profilePath,
+        bootstrapPath,
         obsidianConfig,
         locale
     };
 }
 
 /**
- * 프로필 존재 여부 확인
+ * USER.md 존재 여부 확인 (비어있지 않은 파일인지)
  * @param {string} profilePath
  * @returns {boolean}
  */
 function profileExists(profilePath) {
-    return fs.existsSync(profilePath);
+    if (!fs.existsSync(profilePath)) return false;
+    const content = fs.readFileSync(profilePath, 'utf-8').trim();
+    return content.length > 0;
+}
+
+/**
+ * BOOTSTRAP.md 존재 여부 확인
+ * @param {string} bootstrapPath
+ * @returns {boolean}
+ */
+function bootstrapExists(bootstrapPath) {
+    return fs.existsSync(bootstrapPath);
 }
 
 /**
@@ -141,6 +154,7 @@ module.exports = {
     errorOutput,
     initializeProjectEnvironment,
     profileExists,
+    bootstrapExists,
     outputContext,
     getMemoryDir,
     findRecentMemoryLogs
