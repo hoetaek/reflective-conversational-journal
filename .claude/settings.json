@@ -5,7 +5,15 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node .claude/hooks/check_profile.js"
+            "command": "node .claude/hooks/load-profile-journals.js"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .claude/hooks/load-memory.js"
           }
         ]
       }
@@ -23,8 +31,10 @@
   },
   "permissions": {
     "allow": [
-      "SlashCommand(/journal)",
-      "SlashCommand(/profile)"
+      "Skill(journal)",
+      "Skill(profile)",
+      "Skill(weekly)",
+      "Skill(reflect)"
     ],
     "deny": [],
     "ask": []

@@ -1,4 +1,5 @@
 ---
+name: profile
 description: 개인 프로필 설정 - 맞춤형 저널링 기반
 ---
 
@@ -112,7 +113,7 @@ description: 개인 프로필 설정 - 맞춤형 저널링 기반
    - 저널 파일 경로: `저널/YYYY/M월/YYYY-MM-DD.md`
    - 예: `저널/2025/10월/2025-10-08.md`
    - 템플릿: templates/daily-note-template.md 사용
-   - **SlashCommand tool로 /journal 실행 (필수)**
+   - **Skill tool로 /journal 실행 (필수)**
    - **중요**: 첫 저널이므로 방금 나눈 프로필 대화 내용과 자연스럽게 연결
 
 ## 시나리오 2: 프로필이 이미 있을 때 (수정/업데이트)
