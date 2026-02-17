@@ -5,7 +5,7 @@
 성찰(R) 섹션의 구조와 프레임워크 선택은 `/reflect` 스킬이 관리한다.
 
 - 프레임워크 파일: `skills/reflect/frameworks/` 디렉토리
-- 현재 프레임워크: What-So What-Now What, Kolb 경험학습 사이클
+- 현재 프레임워크: What-So What-Now What, Kolb 경험학습 사이클, Gibbs 성찰 사이클, NVC 자기대화
 - 새 프레임워크 추가: `frameworks/` 디렉토리에 `.md` 파일 추가
 
 ## 원칙

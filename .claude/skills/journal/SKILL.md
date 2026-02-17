@@ -8,7 +8,7 @@ description: |
 
 # Journal Skill
 
-> CLAUDE.md 페르소나 지침을 따름 (친근한 반말, 친구처럼)
+> SOUL.md(핵심 태도) + IDENTITY.md(대화 스타일) 지침을 따름
 
 ## 핵심 철학
 
