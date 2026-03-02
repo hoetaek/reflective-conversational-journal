@@ -31,7 +31,7 @@
   },
   "permissions": {
     "allow": [
-      "Skill(journal)",
+      "Skill(kickoff)",
       "Skill(weekly)",
       "Skill(reflect)"
     ],
