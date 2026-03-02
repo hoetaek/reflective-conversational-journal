@@ -46,13 +46,13 @@ description: |
 
 ### 성찰 연동 (reflect 스킬)
 
-대화 중 자유 노트(F)나 대화 내용에서 **성찰할 만한 내용**이 감지되면 `/reflect` 스킬을 자동 실행한다.
+대화 중 자유 노트나 대화 내용에서 **성찰할 만한 내용**이 감지되면 `/reflect` 스킬을 자동 실행한다.
 
 **감지 기준**: "이 내용에서 배운 점(So What)이나 다음에 다르게 할 것(Now What)을 뽑아낼 수 있는가?"
 - 시행착오/실수, 외부 피드백이 대표적 사례
 - 단순 완료 기록, 정보 조회는 대상 아님
 
-성찰(R) 섹션은 reflect 스킬이 프레임워크를 선택해서 채운다. kickoff 스킬이 직접 성찰 구조를 하드코딩하지 않음.
+성찰 섹션은 reflect 스킬이 프레임워크를 선택해서 채운다. kickoff 스킬이 직접 성찰 구조를 하드코딩하지 않음.
 
 ### STEP 3: 대화 마무리
 
@@ -73,6 +73,6 @@ description: |
 
 ## References
 
-- [저널 구조](references/journal-structure.md) - 시간대별 섹션 (P/F/R)
+- [저널 구조](references/journal-structure.md) - 자유 노트 / 성찰 / 장기 인사이트
 - [성찰 형식](references/reflection-format.md) - What-So What-Now What
 - [연결 질문 패턴](references/connection-patterns.md) - 대화 시작 질문
